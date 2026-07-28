@@ -1,0 +1,341 @@
+---
+import type { Locale } from "../i18n/ui";
+import { t, githubUrl } from "../i18n/ui";
+import Base from "../layouts/Base.astro";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const copy = t(locale);
+---
+
+<Base locale={locale}>
+  <section class="hero" aria-labelledby="hero-brand">
+    <div class="hero__visual" aria-hidden="true">
+      <img
+        class="hero__bridge"
+        src="/images/bridge.svg"
+        alt=""
+        width="1600"
+        height="900"
+      />
+      <div class="hero__fade"></div>
+    </div>
+    <div class="wrap hero__content">
+      <p class="hero__brand" id="hero-brand">{copy.hero.brand}</p>
+      <h1 class="hero__slogan">
+        <span class="hero__slogan-mark">—</span>
+        {copy.hero.slogan}
+      </h1>
+      <p class="hero__lead">{copy.hero.lead}</p>
+      <div class="cta-row hero__cta">
+        <a
+          class="btn btn--primary"
+          href={githubUrl}
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          {copy.hero.ctaPrimary}
+        </a>
+        <span class="cta-soon">{copy.hero.ctaSecondary}</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="what-title">
+    <div class="wrap">
+      <h2 class="section__title" id="what-title">{copy.what.title}</h2>
+      <p class="section__body">{copy.what.body}</p>
+    </div>
+  </section>
+
+  <section class="section section--honey" aria-labelledby="how-title">
+    <div class="wrap">
+      <h2 class="section__title" id="how-title">{copy.how.title}</h2>
+      <p class="section__lead">{copy.how.lead}</p>
+      <ol class="steps">
+        {
+          copy.how.steps.map((step) => (
+            <li class="steps__item">
+              <span class="steps__n" aria-hidden="true">
+                {step.n}
+              </span>
+              <div>
+                <h3 class="steps__title">{step.title}</h3>
+                <p class="steps__body">{step.body}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="privacy-title">
+    <div class="wrap">
+      <h2 class="section__title" id="privacy-title">{copy.privacy.title}</h2>
+      <p class="section__body">{copy.privacy.body}</p>
+    </div>
+  </section>
+
+  <section class="section section--honey" aria-labelledby="models-title">
+    <div class="wrap">
+      <h2 class="section__title" id="models-title">{copy.models.title}</h2>
+      <p class="section__lead">{copy.models.lead}</p>
+      <div class="models">
+        <article class="models__block">
+          <h3 class="models__title">{copy.models.whisperTitle}</h3>
+          <p class="models__body">{copy.models.whisperBody}</p>
+        </article>
+        <article class="models__block">
+          <h3 class="models__title">{copy.models.nllbTitle}</h3>
+          <p class="models__body">{copy.models.nllbBody}</p>
+        </article>
+      </div>
+      <p class="models__note">{copy.models.note}</p>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="community-title">
+    <div class="wrap">
+      <h2 class="section__title" id="community-title">{copy.community.title}</h2>
+      <p class="section__body">{copy.community.body}</p>
+      <p class="community-cta">
+        <a
+          class="btn btn--ghost"
+          href={githubUrl}
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          {copy.community.cta}
+        </a>
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--sand institutional" aria-labelledby="inst-title">
+    <div class="wrap">
+      <h2 class="section__title" id="inst-title">{copy.institutional.title}</h2>
+      <p class="section__body institutional__body">{copy.institutional.body}</p>
+    </div>
+  </section>
+
+  <section class="section closing" aria-labelledby="closing-title">
+    <div class="wrap">
+      <h2 class="section__title" id="closing-title">{copy.closing.title}</h2>
+      <p class="section__body">{copy.closing.body}</p>
+      <div class="cta-row closing__cta">
+        <a
+          class="btn btn--primary"
+          href={githubUrl}
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          {copy.closing.ctaPrimary}
+        </a>
+        <span class="cta-soon">{copy.closing.ctaSecondary}</span>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: 100svh;
+    display: grid;
+    align-items: end;
+    overflow: hidden;
+    background:
+      linear-gradient(
+        165deg,
+        var(--cream) 0%,
+        color-mix(in srgb, var(--honeydew) 55%, var(--cream)) 55%,
+        var(--sand-dune) 100%
+      );
+  }
+
+  .hero__visual {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .hero__bridge {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 70%;
+    opacity: 0.55;
+    animation: bridge-in 1.4s var(--ease) both;
+  }
+
+  .hero__fade {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(
+        to top,
+        var(--cream) 8%,
+        color-mix(in srgb, var(--cream) 55%, transparent) 42%,
+        transparent 72%
+      ),
+      linear-gradient(
+        to right,
+        color-mix(in srgb, var(--cream) 70%, transparent) 0%,
+        transparent 45%
+      );
+  }
+
+  .hero__content {
+    position: relative;
+    z-index: 1;
+    padding-block: clamp(6rem, 18vh, 9rem) clamp(3rem, 8vh, 5rem);
+    animation: text-in 0.9s var(--ease) 0.15s both;
+  }
+
+  .hero__brand {
+    margin: 0 0 0.85rem;
+    font-size: clamp(2.8rem, 9vw, 5.5rem);
+    font-weight: 800;
+    line-height: 0.95;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+
+  .hero__slogan {
+    margin: 0 0 1.25rem;
+    max-width: 18ch;
+    font-size: clamp(1.35rem, 3.2vw, 2rem);
+    font-weight: 700;
+    line-height: 1.25;
+    color: var(--dim-grey);
+  }
+
+  .hero__slogan-mark {
+    color: var(--desert-sand);
+    margin-right: 0.15em;
+  }
+
+  .hero__lead {
+    margin: 0 0 1.75rem;
+    max-width: 32rem;
+    font-size: clamp(1.05rem, 2vw, 1.2rem);
+    color: var(--ink);
+  }
+
+  .steps {
+    list-style: none;
+    margin: 2.5rem 0 0;
+    padding: 0;
+    display: grid;
+    gap: 2rem;
+  }
+
+  @media (min-width: 768px) {
+    .steps {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem 1.75rem;
+    }
+  }
+
+  .steps__item {
+    display: grid;
+    gap: 0.75rem;
+    padding-top: 1rem;
+    border-top: 1.5px solid color-mix(in srgb, var(--dim-grey) 22%, transparent);
+  }
+
+  .steps__n {
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    color: var(--desert-sand);
+  }
+
+  .steps__title {
+    margin: 0 0 0.5rem;
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: var(--ink);
+  }
+
+  .steps__body {
+    margin: 0;
+    color: var(--dim-grey);
+    font-size: 0.98rem;
+  }
+
+  .models {
+    display: grid;
+    gap: 1.75rem;
+    margin-top: 2rem;
+  }
+
+  @media (min-width: 700px) {
+    .models {
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+    }
+  }
+
+  .models__block {
+    padding-top: 1rem;
+    border-top: 1.5px solid color-mix(in srgb, var(--dim-grey) 22%, transparent);
+  }
+
+  .models__title {
+    margin: 0 0 0.5rem;
+    font-size: 1.15rem;
+    font-weight: 800;
+  }
+
+  .models__body {
+    margin: 0;
+    color: var(--dim-grey);
+  }
+
+  .models__note {
+    margin: 1.75rem 0 0;
+    font-size: 0.9rem;
+    color: var(--dim-grey);
+  }
+
+  .community-cta {
+    margin: 1.75rem 0 0;
+  }
+
+  .institutional__body {
+    font-style: italic;
+    max-width: 40rem;
+  }
+
+  .closing__cta {
+    margin-top: 1.75rem;
+  }
+
+  @keyframes text-in {
+    from {
+      opacity: 0;
+      transform: translateY(1.1rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes bridge-in {
+    from {
+      opacity: 0;
+      transform: translateY(1.5rem) scale(1.02);
+    }
+    to {
+      opacity: 0.55;
+      transform: translateY(0) scale(1);
+    }
+  }
+</style>

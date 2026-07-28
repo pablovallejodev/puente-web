@@ -1,0 +1,20 @@
+{
+  "name": "puente-web",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "astro": "^5.13.0"
+  },
+  "devDependencies": {
+    "@astrojs/sitemap": "^3.5.0",
+    "typescript": "^5.9.0"
+  },
+  "packageManager": "pnpm@11.5.2"
+}

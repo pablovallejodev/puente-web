@@ -1,0 +1,217 @@
+---
+import type { Locale } from "../i18n/ui";
+import { t, localePath, locales, localeNames, githubUrl } from "../i18n/ui";
+import "../styles/global.css";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const copy = t(locale);
+const canonical = new URL(localePath(locale), Astro.site).href;
+---
+
+<!doctype html>
+<html lang={locale}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{copy.meta.title}</title>
+    <meta name="description" content={copy.meta.description} />
+    <link rel="canonical" href={canonical} />
+    {
+      locales.map((l) => (
+        <link
+          rel="alternate"
+          hreflang={l}
+          href={new URL(localePath(l), Astro.site).href}
+        />
+      ))
+    }
+    <link
+      rel="alternate"
+      hreflang="x-default"
+      href={new URL(localePath("es"), Astro.site).href}
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={copy.meta.title} />
+    <meta property="og:description" content={copy.meta.description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content={locale === "en" ? "en_US" : locale === "ca" ? "ca_ES" : "es_ES"} />
+    <meta property="og:image" content={new URL("/og.png", Astro.site).href} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={copy.meta.title} />
+    <meta name="twitter:description" content={copy.meta.description} />
+    <meta name="twitter:image" content={new URL("/og.png", Astro.site).href} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Mulish:wght@500;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="grain" aria-hidden="true"></div>
+    <a class="skip-link" href="#contenido">{copy.nav.skip}</a>
+
+    <header class="site-header">
+      <div class="wrap site-header__inner">
+        <a class="site-logo" href={localePath(locale)}>Puente</a>
+        <nav class="site-nav" aria-label={copy.nav.langLabel}>
+          <ul class="lang-switch" role="list">
+            {
+              locales.map((l) => (
+                <li>
+                  <a
+                    href={localePath(l)}
+                    hreflang={l}
+                    aria-current={l === locale ? "page" : undefined}
+                  >
+                    {localeNames[l]}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+          <a class="nav-code" href={githubUrl} rel="noopener noreferrer" target="_blank">
+            {copy.nav.code}
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="contenido">
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap site-footer__inner">
+        <p class="site-footer__brand">Puente</p>
+        <p>{copy.footer.by}</p>
+        <p>
+          <a href={githubUrl} rel="noopener noreferrer" target="_blank">{copy.footer.license}</a>
+          · {copy.footer.rights}
+        </p>
+        <ul class="lang-switch lang-switch--footer" role="list">
+          {
+            locales.map((l) => (
+              <li>
+                <a
+                  href={localePath(l)}
+                  hreflang={l}
+                  aria-current={l === locale ? "page" : undefined}
+                >
+                  {localeNames[l]}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </footer>
+  </body>
+</html>
+
+<style>
+  .site-header {
+    position: absolute;
+    inset-inline: 0;
+    top: 0;
+    z-index: 10;
+    padding-block: 1.25rem;
+  }
+
+  .site-header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .site-logo {
+    font-weight: 800;
+    font-size: 1.15rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--ink);
+  }
+
+  .site-nav {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+  }
+
+  .lang-switch {
+    display: flex;
+    gap: 0.65rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .lang-switch a {
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--dim-grey);
+    opacity: 0.7;
+  }
+
+  .lang-switch a[aria-current="page"],
+  .lang-switch a:hover {
+    opacity: 1;
+    color: var(--ink);
+  }
+
+  .nav-code {
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-decoration: none;
+    color: var(--ink);
+    border-bottom: 1.5px solid var(--desert-sand);
+    padding-bottom: 0.1rem;
+  }
+
+  .nav-code:hover {
+    border-bottom-color: var(--dim-grey);
+  }
+
+  .site-footer {
+    background: var(--sand-dune);
+    padding-block: 2.75rem;
+    border-top: 1px solid color-mix(in srgb, var(--dim-grey) 18%, transparent);
+  }
+
+  .site-footer__inner {
+    display: grid;
+    gap: 0.5rem;
+  }
+
+  .site-footer p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--dim-grey);
+  }
+
+  .site-footer a {
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+
+  .site-footer__brand {
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink) !important;
+  }
+
+  .lang-switch--footer {
+    margin-top: 0.75rem;
+  }
+</style>
