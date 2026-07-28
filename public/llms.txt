@@ -1,0 +1,30 @@
+# Puente
+
+> Real-time voice translation on your phone. Offline. Free. Open source (MIT).
+
+Puente is a mobile app for live voice translation that runs entirely on-device after an initial model download. No accounts, no cloud processing of your audio. Built by Pablo Vallejo.
+
+## Canonical URLs
+
+- Spanish (default): https://puente.app/
+- Catalan: https://puente.app/ca/
+- English: https://puente.app/en/
+
+## Key facts
+
+- Product: Puente — offline, on-device voice translation for Android
+- License: MIT (free and open source)
+- Privacy: audio is processed on the device; not sent to servers; not stored
+- Speech recognition: OpenAI Whisper (Tiny, Base, or Small — user chooses by device)
+- Translation: Meta NLLB (hundreds of language pairs)
+- Status: source code available on GitHub; Google Play release coming soon
+- Author: Pablo Vallejo
+
+## Source code
+
+- https://github.com/pablovallejodev/puente
+
+## Optional
+
+- Sitemap: https://puente.app/sitemap-index.xml
+- Social preview image: https://puente.app/og.png (1200×630, static PNG from brand favicon)

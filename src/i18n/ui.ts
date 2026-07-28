@@ -3,6 +3,13 @@ export type Locale = (typeof locales)[number];
 export const defaultLocale: Locale = "es";
 
 export const githubUrl = "https://github.com/pablovallejodev/puente";
+export const siteName = "Puente";
+
+export const ogLocale: Record<Locale, string> = {
+  es: "es_ES",
+  ca: "ca_ES",
+  en: "en_US",
+};
 
 export const ui = {
   es: {
@@ -10,6 +17,7 @@ export const ui = {
       title: "Puente — lo que une civilizaciones",
       description:
         "Traducción de voz en tiempo real en tu móvil. Offline. Gratuita. Código abierto.",
+      ogAlt: "Puente — icono de la marca.",
     },
     nav: {
       code: "Código",
@@ -73,7 +81,7 @@ export const ui = {
       body: "Mientras en Bruselas se espera a que maduren las subvenciones, el trabajo útil ya puede caber en un teléfono. Puente existe para quien necesita entenderse hoy — no el año fiscal que viene.",
     },
     closing: {
-      title: "Un puente entre civilizaciones",
+      title: "Puente — un puente entre civilizaciones",
       body: "Offline. Gratuito. Código abierto. Empieza mirando el código; Google Play llega en las próximas semanas.",
       ctaPrimary: "Ver código en GitHub",
       ctaSecondary: "Pronto en Google Play",
@@ -86,9 +94,10 @@ export const ui = {
   },
   ca: {
     meta: {
-      title: "Pont — el que uneix civilitzacions",
+      title: "Puente — el que uneix civilitzacions",
       description:
         "Traducció de veu en temps real al mòbil. Offline. Gratuïta. Codi obert.",
+      ogAlt: "Puente — icona de la marca.",
     },
     nav: {
       code: "Codi",
@@ -152,7 +161,7 @@ export const ui = {
       body: "Mentre a Brussel·les s’espera que madurin les subvencions, la feina útil ja pot cabre en un telèfon. Puente existeix per a qui necessita entendre’s avui — no l’any fiscal que ve.",
     },
     closing: {
-      title: "Un pont entre civilitzacions",
+      title: "Puente — un pont entre civilitzacions",
       body: "Offline. Gratuït. Codi obert. Comença mirant el codi; Google Play arriba les properes setmanes.",
       ctaPrimary: "Mira el codi a GitHub",
       ctaSecondary: "Aviat a Google Play",
@@ -168,6 +177,7 @@ export const ui = {
       title: "Puente — what unites civilizations",
       description:
         "Real-time voice translation on your phone. Offline. Free. Open source.",
+      ogAlt: "Puente — brand icon.",
     },
     nav: {
       code: "Code",
@@ -231,7 +241,7 @@ export const ui = {
       body: "While Brussels waits for grants to mature, useful work can already fit on a phone. Puente exists for people who need to understand each other today — not next fiscal year.",
     },
     closing: {
-      title: "A bridge between civilizations",
+      title: "Puente — a bridge between civilizations",
       body: "Offline. Free. Open source. Start by looking at the code; Google Play arrives in the coming weeks.",
       ctaPrimary: "View code on GitHub",
       ctaSecondary: "Coming soon to Google Play",
