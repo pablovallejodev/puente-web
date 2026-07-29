@@ -2,6 +2,9 @@
 
 Landing estática del proyecto open source **Puente**: traducción de voz en tiempo real, offline, MIT.
 
+La identidad, la voz y las reglas visuales del proyecto están en la
+[guía de marca de Puente](https://github.com/pablovallejodev/puente/blob/main/BRAND.md).
+
 ## Requisitos
 
 - Node 20+
