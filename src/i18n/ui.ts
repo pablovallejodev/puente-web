@@ -73,7 +73,7 @@ export const ui = {
     },
     community: {
       title: "De la comunidad, para la comunidad",
-      body: "Puente es software libre con licencia MIT: gratuito, auditable y modificable. Hecho por Pablo Vallejo — una persona, no una empresa esperando el próximo ciclo de financiación.",
+      body: "Puente nació viajando, cuando el idioma era la única frontera que quedaba. Es software libre con licencia MIT: gratuito, auditable y modificable. Hecho por Pablo Vallejo — una persona, no una empresa esperando el próximo ciclo de financiación.",
       cta: "Abrir el repositorio",
     },
     institutional: {
@@ -145,7 +145,7 @@ export const ui = {
       lead: "Sense jerga innecessària: hi ha mides diferents perquè vagi bé en més telèfons.",
       whisperTitle: "Escolta",
       whisperBody:
-        "Whisper Tiny, Base o Small: més ràpid, equilibrat o més precís. Tu decides segons la memòria del dispositiu.",
+        "Whisper Tiny, Base o Small: més ràpid, equilibrat o més precís. Tu decideixes segons la memòria del dispositiu.",
       nllbTitle: "Traducció",
       nllbBody:
         "NLLB és el motor de traducció: centenars de parells d’idiomes, pensat per córrer al mòbil.",
@@ -153,7 +153,7 @@ export const ui = {
     },
     community: {
       title: "De la comunitat, per a la comunitat",
-      body: "Puente és programari lliure amb llicència MIT: gratuït, auditable i modificable. Fet per Pablo Vallejo — una persona, no una empresa esperant el proper cicle de finançament.",
+      body: "Puente va néixer viatjant, quan l’idioma era l’única frontera que quedava. És programari lliure amb llicència MIT: gratuït, auditable i modificable. Fet per Pablo Vallejo — una persona, no una empresa esperant el proper cicle de finançament.",
       cta: "Obre el repositori",
     },
     institutional: {
@@ -174,7 +174,7 @@ export const ui = {
   },
   en: {
     meta: {
-      title: "Puente — what unites civilizations",
+      title: "Puente — a bridge between civilizations",
       description:
         "Real-time voice translation on your phone. Offline. Free. Open source.",
       ogAlt: "Puente — brand icon.",
@@ -186,7 +186,7 @@ export const ui = {
     },
     hero: {
       brand: "Puente",
-      slogan: "what unites civilizations",
+      slogan: "a bridge between civilizations",
       lead: "Real-time voice translation on your phone. Offline. Free. Open source.",
       ctaPrimary: "View code on GitHub",
       ctaSecondary: "Coming soon to Google Play",
@@ -233,7 +233,7 @@ export const ui = {
     },
     community: {
       title: "From the community, for the community",
-      body: "Puente is free software under the MIT license: free, auditable, and modifiable. Made by Pablo Vallejo — one person, not a company waiting for the next funding cycle.",
+      body: "Puente was born while travelling, when language was the only border left. It is free software under the MIT license: free, auditable, and modifiable. Made by Pablo Vallejo — one person, not a company waiting for the next funding cycle.",
       cta: "Open the repository",
     },
     institutional: {

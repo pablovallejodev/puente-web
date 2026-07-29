@@ -13,59 +13,86 @@ const copy = t(locale);
 
 <Base locale={locale}>
   <section class="hero" aria-labelledby="hero-brand">
-    <div class="hero__visual" aria-hidden="true">
-      <img
-        class="hero__bridge"
-        src="/images/bridge.svg"
-        alt=""
-        width="1600"
-        height="900"
-      />
-      <div class="hero__fade"></div>
+    <div class="wrap hero__grid">
+      <div class="hero__content">
+        <div class="hero__availability">
+          <span class="hero__availability-dot"></span>
+          <span>100% local · Android</span>
+        </div>
+        <p class="hero__brand" id="hero-brand">{copy.hero.brand}</p>
+        <h1 class="hero__slogan">{copy.hero.slogan}</h1>
+        <p class="hero__lead">{copy.hero.lead}</p>
+        <div class="cta-row hero__cta">
+          <a
+            class="btn btn--primary"
+            href={githubUrl}
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            <span>{copy.hero.ctaPrimary}</span>
+            <span aria-hidden="true">↗</span>
+          </a>
+          <span class="cta-soon">{copy.hero.ctaSecondary}</span>
+        </div>
+        <ul class="hero__proofs" role="list">
+          <li>OFFLINE</li>
+          <li>ON-DEVICE</li>
+          <li>MIT</li>
+        </ul>
+      </div>
+
+      <figure class="hero__art">
+        <div class="hero__arch">
+          <img
+            class="hero__bridge"
+            src="/images/bridge.svg"
+            alt=""
+            width="1600"
+            height="900"
+          />
+          <div class="hero__signal" aria-hidden="true">
+            <span></span><span></span><span></span><span></span><span></span>
+          </div>
+        </div>
+        <figcaption class="hero__caption">
+          <span>Cangas de Onís · Asturias</span>
+          <span>01 / PUENTE</span>
+        </figcaption>
+      </figure>
     </div>
-    <div class="wrap hero__content">
-      <p class="hero__brand" id="hero-brand">{copy.hero.brand}</p>
-      <h1 class="hero__slogan">
-        <span class="hero__slogan-mark">—</span>
-        {copy.hero.slogan}
-      </h1>
-      <p class="hero__lead">{copy.hero.lead}</p>
-      <div class="cta-row hero__cta">
-        <a
-          class="btn btn--primary"
-          href={githubUrl}
-          rel="noopener noreferrer"
-          target="_blank"
-        >
-          {copy.hero.ctaPrimary}
-        </a>
-        <span class="cta-soon">{copy.hero.ctaSecondary}</span>
+  </section>
+
+  <section class="section manifesto" aria-labelledby="what-title">
+    <div class="wrap editorial-grid">
+      <p class="section-index" aria-hidden="true">01 / 05</p>
+      <div class="editorial-copy">
+        <p class="section__eyebrow">PUENTE</p>
+        <h2 class="manifesto__title" id="what-title">{copy.what.title}</h2>
+        <p class="manifesto__body">{copy.what.body}</p>
+        <div class="manifesto__line" aria-hidden="true"></div>
       </div>
     </div>
   </section>
 
-  <section class="section" aria-labelledby="what-title">
+  <section class="section process" aria-labelledby="how-title">
     <div class="wrap">
-      <h2 class="section__title" id="what-title">{copy.what.title}</h2>
-      <p class="section__body">{copy.what.body}</p>
-    </div>
-  </section>
-
-  <section class="section section--honey" aria-labelledby="how-title">
-    <div class="wrap">
-      <h2 class="section__title" id="how-title">{copy.how.title}</h2>
-      <p class="section__lead">{copy.how.lead}</p>
+      <div class="section-heading">
+        <div>
+          <p class="section__eyebrow">02 / 05</p>
+          <h2 class="section__title" id="how-title">{copy.how.title}</h2>
+        </div>
+        <p class="section__lead">{copy.how.lead}</p>
+      </div>
       <ol class="steps">
         {
           copy.how.steps.map((step) => (
             <li class="steps__item">
-              <span class="steps__n" aria-hidden="true">
-                {step.n}
-              </span>
-              <div>
-                <h3 class="steps__title">{step.title}</h3>
-                <p class="steps__body">{step.body}</p>
+              <div class="steps__top">
+                <span class="steps__n" aria-hidden="true">{step.n}</span>
+                <span class="steps__rule" aria-hidden="true"></span>
               </div>
+              <h3 class="steps__title">{step.title}</h3>
+              <p class="steps__body">{step.body}</p>
             </li>
           ))
         }
@@ -73,269 +100,881 @@ const copy = t(locale);
     </div>
   </section>
 
-  <section class="section" aria-labelledby="privacy-title">
+  <section class="section privacy" aria-labelledby="privacy-title">
     <div class="wrap">
-      <h2 class="section__title" id="privacy-title">{copy.privacy.title}</h2>
-      <p class="section__body">{copy.privacy.body}</p>
+      <div class="privacy__panel">
+        <div class="privacy__copy">
+          <p class="section__eyebrow">03 / 05 · LOCAL</p>
+          <h2 class="section__title" id="privacy-title">{copy.privacy.title}</h2>
+          <p class="section__body">{copy.privacy.body}</p>
+        </div>
+        <div class="privacy__seal" aria-hidden="true">
+          <span class="privacy__orbit privacy__orbit--outer"></span>
+          <span class="privacy__orbit privacy__orbit--inner"></span>
+          <span class="privacy__core">LOCAL</span>
+        </div>
+      </div>
     </div>
   </section>
 
-  <section class="section section--honey" aria-labelledby="models-title">
+  <section class="section models-section" aria-labelledby="models-title">
     <div class="wrap">
-      <h2 class="section__title" id="models-title">{copy.models.title}</h2>
-      <p class="section__lead">{copy.models.lead}</p>
+      <div class="section-heading">
+        <div>
+          <p class="section__eyebrow">04 / 05</p>
+          <h2 class="section__title" id="models-title">{copy.models.title}</h2>
+        </div>
+        <p class="section__lead">{copy.models.lead}</p>
+      </div>
       <div class="models">
         <article class="models__block">
+          <div class="models__visual models__visual--wave" aria-hidden="true">
+            <span></span><span></span><span></span><span></span><span></span>
+          </div>
+          <p class="models__index">01 · WHISPER</p>
           <h3 class="models__title">{copy.models.whisperTitle}</h3>
           <p class="models__body">{copy.models.whisperBody}</p>
         </article>
         <article class="models__block">
+          <div class="models__visual models__visual--languages" aria-hidden="true">
+            <span>ES</span><span>EN</span><span>CA</span><span>TH</span>
+          </div>
+          <p class="models__index">02 · NLLB</p>
           <h3 class="models__title">{copy.models.nllbTitle}</h3>
           <p class="models__body">{copy.models.nllbBody}</p>
         </article>
       </div>
-      <p class="models__note">{copy.models.note}</p>
+      <p class="models__note"><span>i</span>{copy.models.note}</p>
     </div>
   </section>
 
-  <section class="section" aria-labelledby="community-title">
-    <div class="wrap">
-      <h2 class="section__title" id="community-title">{copy.community.title}</h2>
-      <p class="section__body">{copy.community.body}</p>
-      <p class="community-cta">
-        <a
-          class="btn btn--ghost"
-          href={githubUrl}
-          rel="noopener noreferrer"
-          target="_blank"
-        >
-          {copy.community.cta}
-        </a>
-      </p>
+  <section class="section community" aria-labelledby="community-title">
+    <div class="wrap community__grid">
+      <div class="community__art">
+        <img
+          src="/icon.png"
+          alt={copy.meta.ogAlt}
+          width="1254"
+          height="1254"
+          loading="lazy"
+        />
+        <span aria-hidden="true">CANGAS DE ONÍS</span>
+      </div>
+      <div class="community__copy">
+        <p class="section__eyebrow">05 / 05 · MIT</p>
+        <h2 class="section__title" id="community-title">{copy.community.title}</h2>
+        <p class="section__body">{copy.community.body}</p>
+        <p class="community-cta">
+          <a
+            class="btn btn--ghost"
+            href={githubUrl}
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            <span>{copy.community.cta}</span>
+            <span aria-hidden="true">↗</span>
+          </a>
+        </p>
+      </div>
     </div>
   </section>
 
-  <section class="section section--sand institutional" aria-labelledby="inst-title">
+  <section class="institutional" aria-labelledby="inst-title">
     <div class="wrap">
-      <h2 class="section__title" id="inst-title">{copy.institutional.title}</h2>
-      <p class="section__body institutional__body">{copy.institutional.body}</p>
+      <div class="institutional__inner">
+        <span class="institutional__mark" aria-hidden="true">“</span>
+        <div>
+          <h2 class="institutional__title" id="inst-title">{copy.institutional.title}</h2>
+          <p class="institutional__body">{copy.institutional.body}</p>
+        </div>
+      </div>
     </div>
   </section>
 
   <section class="section closing" aria-labelledby="closing-title">
-    <div class="wrap">
-      <h2 class="section__title" id="closing-title">{copy.closing.title}</h2>
-      <p class="section__body">{copy.closing.body}</p>
-      <div class="cta-row closing__cta">
-        <a
-          class="btn btn--primary"
-          href={githubUrl}
-          rel="noopener noreferrer"
-          target="_blank"
-        >
-          {copy.closing.ctaPrimary}
-        </a>
-        <span class="cta-soon">{copy.closing.ctaSecondary}</span>
+    <div class="wrap closing__panel">
+      <div class="closing__arch" aria-hidden="true"></div>
+      <div class="closing__content">
+        <p class="closing__wordmark">PUENTE</p>
+        <h2 class="closing__title" id="closing-title">{copy.closing.title}</h2>
+        <p class="closing__body">{copy.closing.body}</p>
+        <div class="cta-row closing__cta">
+          <a
+            class="btn closing__button"
+            href={githubUrl}
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            <span>{copy.closing.ctaPrimary}</span>
+            <span aria-hidden="true">↗</span>
+          </a>
+          <span class="closing__soon">{copy.closing.ctaSecondary}</span>
+        </div>
       </div>
     </div>
   </section>
 </Base>
 
 <style>
+  /* Editorial product layout */
   .hero {
-    position: relative;
     min-height: 100svh;
     display: grid;
-    align-items: end;
-    overflow: hidden;
+    align-items: center;
+    padding-block: clamp(8rem, 15vh, 11rem) clamp(4rem, 8vh, 6rem);
     background:
-      linear-gradient(
-        165deg,
-        var(--cream) 0%,
-        color-mix(in srgb, var(--honeydew) 55%, var(--cream)) 55%,
-        var(--sand-dune) 100%
-      );
+      radial-gradient(
+        circle at 78% 20%,
+        color-mix(in srgb, var(--honeydew) 75%, transparent),
+        transparent 34rem
+      ),
+      var(--cream);
   }
 
-  .hero__visual {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
+  .hero__grid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    gap: clamp(3rem, 7vw, 6.5rem);
+    align-items: center;
+  }
+
+  .hero__content {
+    position: relative;
+    z-index: 2;
+    padding: 0;
+    animation: text-in 0.9s var(--ease) 0.08s both;
+  }
+
+  .hero__availability {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    margin-bottom: 1.5rem;
+    padding: 0.45rem 0.7rem;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--dim-grey);
+    background: color-mix(in srgb, var(--honeydew) 55%, transparent);
+  }
+
+  .hero__availability-dot {
+    width: 0.45rem;
+    height: 0.45rem;
+    border-radius: 50%;
+    background: var(--dim-grey);
+    box-shadow: 0 0 0 0.25rem color-mix(in srgb, var(--dim-grey) 12%, transparent);
+  }
+
+  .hero__brand {
+    margin: 0;
+    font-size: clamp(4.2rem, 12vw, 8rem);
+    font-weight: 900;
+    line-height: 0.82;
+    letter-spacing: -0.065em;
+    text-transform: none;
+    color: var(--ink);
+  }
+
+  .hero__slogan {
+    margin: 1.5rem 0 0;
+    max-width: 18ch;
+    font-size: clamp(1.35rem, 3vw, 2.15rem);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.025em;
+    color: var(--dim-grey);
+  }
+
+  .hero__lead {
+    margin: 1.35rem 0 0;
+    max-width: 34rem;
+    font-size: clamp(1rem, 1.8vw, 1.15rem);
+    line-height: 1.65;
+    color: var(--ink);
+  }
+
+  .hero__cta {
+    margin-top: 2rem;
+  }
+
+  .hero__cta .btn {
+    justify-content: space-between;
+    min-width: 13rem;
+  }
+
+  .hero__proofs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin: 2.25rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .hero__proofs li {
+    padding: 0.45rem 0.7rem;
+    border: 1px solid var(--line);
+    border-radius: 0.55rem;
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 0.13em;
+    color: var(--dim-grey);
+  }
+
+  .hero__art {
+    position: relative;
+    width: min(100%, 34rem);
+    margin: 0 auto;
+    animation: art-in 1.1s var(--ease) 0.15s both;
+  }
+
+  .hero__arch {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: 18rem 18rem 1.4rem 1.4rem;
+    background: var(--honeydew);
+    box-shadow:
+      0 1.5rem 4rem color-mix(in srgb, var(--ink) 12%, transparent),
+      inset 0 0 0 0.5rem color-mix(in srgb, var(--cream) 28%, transparent);
   }
 
   .hero__bridge {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center 70%;
-    opacity: 0.55;
-    animation: bridge-in 1.4s var(--ease) both;
+    object-position: center;
+    opacity: 0.94;
+    animation: none;
+    transform: scale(1.04);
+    transition: transform 800ms var(--ease);
   }
 
-  .hero__fade {
+  .hero__art:hover .hero__bridge {
+    transform: scale(1);
+  }
+
+  .hero__signal {
     position: absolute;
-    inset: 0;
-    background:
-      linear-gradient(
-        to top,
-        var(--cream) 8%,
-        color-mix(in srgb, var(--cream) 55%, transparent) 42%,
-        transparent 72%
-      ),
-      linear-gradient(
-        to right,
-        color-mix(in srgb, var(--cream) 70%, transparent) 0%,
-        transparent 45%
-      );
+    right: 1.25rem;
+    bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.2rem;
+    width: 4.25rem;
+    height: 4.25rem;
+    border: 1px solid color-mix(in srgb, var(--cream) 55%, transparent);
+    border-radius: 1rem;
+    background: color-mix(in srgb, var(--cream) 82%, transparent);
+    backdrop-filter: blur(12px);
   }
 
-  .hero__content {
-    position: relative;
-    z-index: 1;
-    padding-block: clamp(6rem, 18vh, 9rem) clamp(3rem, 8vh, 5rem);
-    animation: text-in 0.9s var(--ease) 0.15s both;
+  .hero__signal span,
+  .models__visual--wave span {
+    display: block;
+    width: 0.22rem;
+    border-radius: 999px;
+    background: var(--ink);
   }
 
-  .hero__brand {
-    margin: 0 0 0.85rem;
-    font-size: clamp(2.8rem, 9vw, 5.5rem);
+  .hero__signal span:nth-child(1),
+  .hero__signal span:nth-child(5) {
+    height: 0.75rem;
+  }
+
+  .hero__signal span:nth-child(2),
+  .hero__signal span:nth-child(4) {
+    height: 1.35rem;
+  }
+
+  .hero__signal span:nth-child(3) {
+    height: 1.9rem;
+  }
+
+  .hero__caption {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 0.8rem;
+    font-size: 0.62rem;
     font-weight: 800;
-    line-height: 0.95;
-    letter-spacing: 0.14em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--ink);
-  }
-
-  .hero__slogan {
-    margin: 0 0 1.25rem;
-    max-width: 18ch;
-    font-size: clamp(1.35rem, 3.2vw, 2rem);
-    font-weight: 700;
-    line-height: 1.25;
     color: var(--dim-grey);
   }
 
-  .hero__slogan-mark {
-    color: var(--desert-sand);
-    margin-right: 0.15em;
-  }
-
-  .hero__lead {
-    margin: 0 0 1.75rem;
-    max-width: 32rem;
-    font-size: clamp(1.05rem, 2vw, 1.2rem);
-    color: var(--ink);
-  }
-
-  .steps {
-    list-style: none;
-    margin: 2.5rem 0 0;
-    padding: 0;
+  .editorial-grid {
     display: grid;
     gap: 2rem;
   }
 
-  @media (min-width: 768px) {
-    .steps {
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2rem 1.75rem;
-    }
+  .section-index {
+    margin: 0;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    color: var(--dim-grey);
+  }
+
+  .manifesto__title {
+    margin: 0;
+    max-width: 12ch;
+    font-size: clamp(3rem, 8vw, 6.5rem);
+    font-weight: 800;
+    line-height: 0.94;
+    letter-spacing: -0.055em;
+    color: var(--ink);
+  }
+
+  .manifesto__body {
+    margin: 2rem 0 0;
+    max-width: 43rem;
+    font-size: clamp(1.15rem, 2vw, 1.5rem);
+    line-height: 1.55;
+    color: var(--dim-grey);
+  }
+
+  .manifesto__line {
+    width: min(100%, 43rem);
+    height: 0.35rem;
+    margin-top: 2.5rem;
+    border-radius: 999px;
+    background:
+      linear-gradient(
+        to right,
+        var(--desert-sand) 0 16%,
+        var(--sand-dune) 16% 55%,
+        var(--honeydew) 55%
+      );
+  }
+
+  .process {
+    background: var(--honeydew);
+  }
+
+  .process .section__eyebrow,
+  .process .section__lead {
+    color: var(--ink);
+  }
+
+  .section-heading {
+    display: grid;
+    gap: 1.25rem;
+    align-items: end;
+    margin-bottom: clamp(2.5rem, 5vw, 4rem);
+  }
+
+  .section-heading .section__lead {
+    max-width: 28rem;
+  }
+
+  .steps {
+    display: grid;
+    gap: 1rem;
+    margin: 0;
   }
 
   .steps__item {
-    display: grid;
-    gap: 0.75rem;
-    padding-top: 1rem;
-    border-top: 1.5px solid color-mix(in srgb, var(--dim-grey) 22%, transparent);
+    display: block;
+    min-height: 18rem;
+    padding: clamp(1.5rem, 3vw, 2rem);
+    border: 1px solid var(--line);
+    border-radius: 1.5rem;
+    background: color-mix(in srgb, var(--cream) 88%, transparent);
+    transition:
+      transform 250ms var(--ease),
+      border-color 250ms var(--ease);
+  }
+
+  .steps__item:hover {
+    transform: translateY(-0.35rem);
+    border-color: color-mix(in srgb, var(--ink) 25%, transparent);
+  }
+
+  .steps__top {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 4.5rem;
   }
 
   .steps__n {
-    font-size: 0.8rem;
-    font-weight: 800;
-    letter-spacing: 0.12em;
-    color: var(--desert-sand);
+    flex: none;
+    width: 2.35rem;
+    height: 2.35rem;
+    display: grid;
+    place-items: center;
+    border-radius: 0.7rem;
+    font-size: 0.7rem;
+    color: var(--ink);
+    background: var(--desert-sand);
+  }
+
+  .steps__rule {
+    width: 100%;
+    height: 1px;
+    background: var(--line);
   }
 
   .steps__title {
-    margin: 0 0 0.5rem;
-    font-size: 1.15rem;
-    font-weight: 800;
-    color: var(--ink);
+    margin: 0 0 0.7rem;
+    font-size: 1.25rem;
+    line-height: 1.2;
   }
 
   .steps__body {
     margin: 0;
-    color: var(--dim-grey);
-    font-size: 0.98rem;
+    font-size: 0.95rem;
+  }
+
+  .privacy {
+    padding-top: 0;
+  }
+
+  .privacy__panel {
+    position: relative;
+    display: grid;
+    gap: 3rem;
+    align-items: center;
+    min-height: 35rem;
+    overflow: hidden;
+    padding: clamp(2rem, 7vw, 5.5rem);
+    border-radius: clamp(1.5rem, 4vw, 3rem);
+    color: var(--cream);
+    background: var(--ink);
+  }
+
+  .privacy__copy {
+    position: relative;
+    z-index: 2;
+  }
+
+  .privacy .section__eyebrow,
+  .privacy .section__body {
+    color: color-mix(in srgb, var(--cream) 70%, transparent);
+  }
+
+  .privacy .section__title {
+    max-width: 13ch;
+    color: var(--cream);
+  }
+
+  .privacy__seal {
+    position: relative;
+    width: min(72vw, 20rem);
+    aspect-ratio: 1;
+    margin: auto;
+    display: grid;
+    place-items: center;
+  }
+
+  .privacy__orbit {
+    position: absolute;
+    border: 1px solid color-mix(in srgb, var(--cream) 18%, transparent);
+    border-radius: 50%;
+  }
+
+  .privacy__orbit--outer {
+    inset: 0;
+  }
+
+  .privacy__orbit--inner {
+    inset: 18%;
+  }
+
+  .privacy__core {
+    display: grid;
+    width: 42%;
+    aspect-ratio: 1;
+    place-items: center;
+    border-radius: 50%;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    color: var(--ink);
+    background: var(--cream);
+    box-shadow: 0 0 0 1.25rem color-mix(in srgb, var(--cream) 7%, transparent);
+  }
+
+  .models-section {
+    background: var(--cream);
   }
 
   .models {
     display: grid;
-    gap: 1.75rem;
-    margin-top: 2rem;
-  }
-
-  @media (min-width: 700px) {
-    .models {
-      grid-template-columns: 1fr 1fr;
-      gap: 2.5rem;
-    }
+    gap: 1rem;
+    margin: 0;
   }
 
   .models__block {
-    padding-top: 1rem;
-    border-top: 1.5px solid color-mix(in srgb, var(--dim-grey) 22%, transparent);
+    min-height: 29rem;
+    padding: clamp(1.5rem, 3vw, 2.25rem);
+    border: 1px solid var(--line);
+    border-radius: 1.75rem;
+    background: var(--honeydew);
+  }
+
+  .models__block:nth-child(2) {
+    background: var(--sand-dune);
+  }
+
+  .models__visual {
+    height: 12rem;
+    margin-bottom: 2rem;
+    border-radius: 1.25rem;
+    background: color-mix(in srgb, var(--cream) 62%, transparent);
+  }
+
+  .models__visual--wave {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+  }
+
+  .models__visual--wave span {
+    width: 0.45rem;
+  }
+
+  .models__visual--wave span:nth-child(1),
+  .models__visual--wave span:nth-child(5) {
+    height: 2.25rem;
+  }
+
+  .models__visual--wave span:nth-child(2),
+  .models__visual--wave span:nth-child(4) {
+    height: 4.5rem;
+  }
+
+  .models__visual--wave span:nth-child(3) {
+    height: 7rem;
+  }
+
+  .models__visual--languages {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+    padding: 1rem;
+  }
+
+  .models__visual--languages span {
+    display: grid;
+    place-items: center;
+    border: 1px solid var(--line);
+    border-radius: 0.8rem;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    color: var(--dim-grey);
+    background: color-mix(in srgb, var(--cream) 58%, transparent);
+  }
+
+  .models__index {
+    margin: 0 0 0.6rem;
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    color: var(--ink);
   }
 
   .models__title {
-    margin: 0 0 0.5rem;
-    font-size: 1.15rem;
-    font-weight: 800;
-  }
-
-  .models__body {
-    margin: 0;
-    color: var(--dim-grey);
+    margin: 0 0 0.65rem;
+    font-size: 1.55rem;
   }
 
   .models__note {
-    margin: 1.75rem 0 0;
-    font-size: 0.9rem;
-    color: var(--dim-grey);
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    margin-top: 1.25rem;
+  }
+
+  .models__note span {
+    display: grid;
+    flex: none;
+    width: 1.5rem;
+    height: 1.5rem;
+    place-items: center;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    font-size: 0.7rem;
+    font-weight: 800;
+  }
+
+  .community {
+    background: var(--honeydew);
+  }
+
+  .community .section__eyebrow,
+  .community .section__body {
+    color: var(--ink);
+  }
+
+  .community__grid {
+    display: grid;
+    gap: clamp(2.5rem, 7vw, 6rem);
+    align-items: center;
+  }
+
+  .community__art {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: 1.75rem;
+    background: var(--sand-dune);
+  }
+
+  .community__art img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    transition: transform 800ms var(--ease);
+  }
+
+  .community__art:hover img {
+    transform: scale(1.025);
+  }
+
+  .community__art span {
+    position: absolute;
+    left: 1rem;
+    bottom: 1rem;
+    padding: 0.5rem 0.7rem;
+    border-radius: 0.55rem;
+    font-size: 0.62rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    color: var(--cream);
+    background: color-mix(in srgb, var(--ink) 75%, transparent);
+    backdrop-filter: blur(10px);
   }
 
   .community-cta {
-    margin: 1.75rem 0 0;
+    margin-top: 2rem;
+  }
+
+  .community-cta .btn {
+    gap: 1rem;
+  }
+
+  .institutional {
+    padding-block: clamp(4rem, 8vw, 6rem);
+    background: var(--sand-dune);
+  }
+
+  .institutional__inner {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: clamp(1rem, 4vw, 3rem);
+    align-items: start;
+    max-width: 62rem;
+  }
+
+  .institutional__mark {
+    font-size: clamp(4rem, 9vw, 7rem);
+    font-weight: 800;
+    line-height: 0.75;
+    color: var(--dim-grey);
+  }
+
+  .institutional__title {
+    margin: 0 0 0.75rem;
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    line-height: 1.15;
+    color: var(--ink);
   }
 
   .institutional__body {
-    font-style: italic;
-    max-width: 40rem;
+    margin: 0;
+    max-width: 48rem;
+    font-size: clamp(1rem, 1.8vw, 1.2rem);
+    font-style: normal;
+    color: var(--ink);
+  }
+
+  .closing {
+    background: var(--cream);
+  }
+
+  .closing__panel {
+    position: relative;
+    min-height: 38rem;
+    overflow: hidden;
+    display: grid;
+    align-items: center;
+    padding: clamp(2rem, 7vw, 5.5rem);
+    border-radius: clamp(1.5rem, 4vw, 3rem);
+    color: var(--cream);
+    background: var(--ink);
+  }
+
+  .closing__arch {
+    position: absolute;
+    right: clamp(-8rem, -6vw, -2rem);
+    bottom: -14rem;
+    width: min(70vw, 34rem);
+    aspect-ratio: 1;
+    border: clamp(2rem, 7vw, 5rem) solid color-mix(in srgb, var(--cream) 7%, transparent);
+    border-radius: 50%;
+  }
+
+  .closing__content {
+    position: relative;
+    z-index: 1;
+    max-width: 43rem;
+  }
+
+  .closing__wordmark {
+    margin: 0 0 1.5rem;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    color: color-mix(in srgb, var(--cream) 65%, transparent);
+  }
+
+  .closing__title {
+    margin: 0;
+    max-width: 12ch;
+    font-size: clamp(2.8rem, 7vw, 5.5rem);
+    font-weight: 800;
+    line-height: 0.98;
+    letter-spacing: -0.05em;
+    color: var(--cream);
+  }
+
+  .closing__body {
+    max-width: 34rem;
+    margin: 1.5rem 0 0;
+    color: color-mix(in srgb, var(--cream) 72%, transparent);
   }
 
   .closing__cta {
-    margin-top: 1.75rem;
+    margin-top: 2rem;
+  }
+
+  .closing__button {
+    justify-content: space-between;
+    min-width: 13rem;
+    color: var(--ink);
+    background: var(--cream);
+  }
+
+  .closing__button:hover {
+    transform: translateY(-2px);
+    background: var(--honeydew);
+  }
+
+  .closing__soon {
+    font-size: 0.85rem;
+    color: color-mix(in srgb, var(--cream) 65%, transparent);
+  }
+
+  @media (min-width: 800px) {
+    .hero__grid {
+      grid-template-columns: minmax(0, 1fr) minmax(20rem, 0.82fr);
+    }
+
+    .editorial-grid {
+      grid-template-columns: 9rem 1fr;
+    }
+
+    .section-heading {
+      grid-template-columns: 1fr auto;
+    }
+
+    .steps {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .privacy__panel {
+      grid-template-columns: 1.15fr 0.85fr;
+    }
+
+    .models {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .community__grid {
+      grid-template-columns: minmax(18rem, 0.85fr) minmax(0, 1fr);
+    }
+  }
+
+  @media (max-width: 799px) {
+    .hero {
+      min-height: auto;
+    }
+
+    .hero__content {
+      order: 1;
+    }
+
+    .hero__art {
+      order: 2;
+      width: min(88vw, 30rem);
+    }
+
+    .privacy__panel {
+      min-height: auto;
+    }
+  }
+
+  @media (max-width: 520px) {
+    .hero {
+      padding-top: 7.5rem;
+    }
+
+    .hero__brand {
+      font-size: clamp(3.7rem, 20vw, 5rem);
+    }
+
+    .hero__caption {
+      font-size: 0.55rem;
+    }
+
+    .hero__proofs {
+      margin-top: 1.5rem;
+    }
+
+    .steps__item {
+      min-height: 16rem;
+    }
+
+    .privacy__panel,
+    .closing__panel {
+      margin-inline: -0.2rem;
+    }
+
+    .institutional__inner {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @keyframes art-in {
+    from {
+      opacity: 0;
+      transform: translateY(2rem) scale(0.985);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
   }
 
   @keyframes text-in {
     from {
       opacity: 0;
-      transform: translateY(1.1rem);
+      transform: translateY(1rem);
     }
     to {
       opacity: 1;
       transform: translateY(0);
-    }
-  }
-
-  @keyframes bridge-in {
-    from {
-      opacity: 0;
-      transform: translateY(1.5rem) scale(1.02);
-    }
-    to {
-      opacity: 0.55;
-      transform: translateY(0) scale(1);
     }
   }
 </style>
