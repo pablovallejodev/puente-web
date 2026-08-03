@@ -10,6 +10,7 @@ import {
   ogLocale,
 } from "../i18n/ui";
 import "../styles/global.css";
+import Analytics from "@vercel/analytics/astro";
 
 interface Props {
   locale: Locale;
@@ -128,6 +129,8 @@ const structuredData = {
       rel="stylesheet"
     />
     <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+
+    <Analytics />
   </head>
   <body>
     <div class="grain" aria-hidden="true"></div>
