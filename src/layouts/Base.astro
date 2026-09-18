@@ -38,6 +38,7 @@ const structuredData = {
       name: siteName,
       description: copy.meta.description,
       inLanguage: locale,
+      license: "https://www.gnu.org/licenses/agpl-3.0.html",
       publisher: { "@id": `${Astro.site}#organization` },
     },
     {
@@ -61,7 +62,7 @@ const structuredData = {
         priceCurrency: "EUR",
       },
       isAccessibleForFree: true,
-      license: "https://opensource.org/licenses/MIT",
+      license: "https://www.gnu.org/licenses/agpl-3.0.html",
       downloadUrl: githubUrl,
       inLanguage: ["es", "ca", "en"],
       author: {
@@ -181,8 +182,11 @@ const structuredData = {
         <div class="site-footer__meta">
           <p>{copy.footer.by}</p>
           <p>
-            <a href={githubUrl} rel="noopener noreferrer" target="_blank">{copy.footer.license}</a>
+            <a href="/LICENSE.txt" rel="license">{copy.footer.license}</a>
             · {copy.footer.rights}
+          </p>
+          <p>
+            <a href="https://github.com/pablovallejodev/puente-web" rel="noopener noreferrer" target="_blank">{copy.footer.source}</a>
           </p>
           <ul class="lang-switch lang-switch--footer" role="list">
             {

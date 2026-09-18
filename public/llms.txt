@@ -1,6 +1,6 @@
 # Puente
 
-> Real-time voice translation on your phone. Offline. Free. Open source (MIT).
+> Real-time voice translation on your phone. Offline. Free. Open source (AGPLv3).
 
 Puente is a mobile app for live voice translation that runs entirely on-device after an initial model download. No accounts, no cloud processing of your audio. Built by Pablo Vallejo.
 
@@ -13,16 +13,19 @@ Puente is a mobile app for live voice translation that runs entirely on-device a
 ## Key facts
 
 - Product: Puente — offline, on-device voice translation for Android
-- License: MIT (free and open source)
+- App code license: GNU AGPLv3 (https://www.gnu.org/licenses/agpl-3.0.html)
+- Website license: GNU AGPLv3 only, AGPL-3.0-only (https://www.gnu.org/licenses/agpl-3.0.html)
+- AI models: separately licensed; the app's AGPLv3 license does not replace their licenses
 - Privacy: audio is processed on the device; not sent to servers; not stored
-- Speech recognition: OpenAI Whisper (Tiny, Base, or Small — user chooses by device)
-- Translation: Meta NLLB (hundreds of language pairs)
+- Speech recognition: Whisper and other downloadable models, selected according to language and device
+- Translation: NLLB, SalamandraTA or MADLAD-400, depending on the selected model
 - Status: source code available on GitHub; Google Play release coming soon
 - Author: Pablo Vallejo
 
 ## Source code
 
 - https://github.com/pablovallejodev/puente
+- Website source: https://github.com/pablovallejodev/puente-web
 
 ## Optional
 
