@@ -2,8 +2,9 @@
 
 Landing estática del proyecto open source **Puente**: traducción de voz en tiempo real, offline, MIT.
 
-La identidad, la voz y las reglas visuales del proyecto están en la
-[guía de marca de Puente](https://github.com/pablovallejodev/puente/blob/main/BRAND.md).
+Diseño con fondo blanco, acentos marrones y Mulish alojada localmente.
+La ilustración original se conserva en `public/images/`; la web sirve versiones
+WebP adaptadas a la pantalla. La licencia de Mulish está en `public/fonts/OFL.txt`.
 
 ## Requisitos
 
