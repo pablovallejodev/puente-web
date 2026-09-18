@@ -1,4 +1,11 @@
-/* Canonical palette and usage rules: ../../puente/BRAND.md */
+@font-face {
+  font-family: "Mulish";
+  src: url("/fonts/mulish-variable.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 200 1000;
+  font-display: swap;
+}
+
 :root {
   --cream: #f2f6d0;
   --honeydew: #d0e1d4;
