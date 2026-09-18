@@ -2,979 +2,238 @@
 import type { Locale } from "../i18n/ui";
 import { t, githubUrl } from "../i18n/ui";
 import Base from "../layouts/Base.astro";
-
-interface Props {
-  locale: Locale;
-}
-
+interface Props { locale: Locale; }
 const { locale } = Astro.props;
 const copy = t(locale);
+const icons = [
+  "M3 8a15 15 0 0 1 18 0M6 12a10 10 0 0 1 12 0M9 16a5 5 0 0 1 6 0M12 20h.01M3 3l18 18",
+  "M12 3 4 6v6c0 5 8 9 8 9s8-4 8-9V6l-8-3Zm-4 9 3 3 5-6",
+  "M20 12v8H4v-8M2 8h20v4H2zM12 8v12M12 8H7a3 3 0 1 1 3-3l2 3Zm0 0h5a3 3 0 1 0-3-3l-2 3Z",
+  "m8 7-5 5 5 5m8-10 5 5-5 5m-3-13-2 16",
+];
 ---
 
 <Base locale={locale}>
-  <section class="hero" aria-labelledby="hero-brand">
-    <div class="wrap hero__grid">
-      <div class="hero__content">
-        <div class="hero__availability">
-          <span class="hero__availability-dot"></span>
-          <span>100% local · Android</span>
-        </div>
-        <p class="hero__brand" id="hero-brand">{copy.hero.brand}</p>
-        <h1 class="hero__slogan">{copy.hero.slogan}</h1>
+  <section class="hero wrap" aria-labelledby="hero-title">
+    <div class="hero__intro">
+      <div>
+        <p class="eyebrow">{copy.hero.eyebrow}</p>
+        <h1 id="hero-title">{copy.hero.title}<br /><span>{copy.hero.accent}</span></h1>
+      </div>
+      <div class="hero__copy">
         <p class="hero__lead">{copy.hero.lead}</p>
-        <div class="cta-row hero__cta">
-          <a
-            class="btn btn--primary"
-            href={githubUrl}
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            <span>{copy.hero.ctaPrimary}</span>
-            <span aria-hidden="true">↗</span>
-          </a>
-          <span class="cta-soon">{copy.hero.ctaSecondary}</span>
+        <div class="hero__actions">
+          <a class="btn btn--primary" href="#como-funciona">{copy.hero.cta}<span aria-hidden="true">↓</span></a>
+          <a class="text-link" href={githubUrl} target="_blank" rel="noopener noreferrer">{copy.hero.secondary}<span aria-hidden="true">↗</span></a>
         </div>
-        <ul class="hero__proofs" role="list">
-          <li>OFFLINE</li>
-          <li>ON-DEVICE</li>
-          <li>MIT</li>
-        </ul>
+        <p class="hero__availability">{copy.hero.availability}</p>
       </div>
+    </div>
+    <figure class="hero__figure">
+      <div class="hero__landscape">
+        <img src="/images/puente-1440.webp" srcset="/images/puente-640.webp 640w, /images/puente-960.webp 960w, /images/puente-1440.webp 1440w, /images/puente-1881.webp 1881w" alt={copy.hero.imageAlt} width="1881" height="836" sizes="(max-width: 1400px) 90vw, 1232px" loading="eager" fetchpriority="high" class="hero__image" />
+        <aside class="conversation" aria-label={copy.hero.example}>
+          <div class="conversation__top"><span class="conversation__brand">Puente</span><span class="conversation__offline"><span></span>{copy.hero.offline}</span></div>
+          <div class="conversation__phrase"><span class="conversation__language">{copy.hero.from}</span><p lang={locale}>{copy.hero.source}</p></div>
+          <div class="conversation__translation"><span class="conversation__language">{copy.hero.to}<span aria-hidden="true">↳</span></span><p lang={locale === "en" ? "es" : "en"}>{copy.hero.translation}</p></div>
+          <div class="conversation__bottom"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 11V7a4 4 0 0 1 8 0v4M6 11h12v10H6zM12 15v2" /></svg>{copy.hero.private}<span class="conversation__wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span></div>
+          <span class="conversation__example">{copy.hero.exampleLabel}</span>
+        </aside>
+      </div>
+      <figcaption><span>{copy.hero.caption}</span><span>{copy.hero.captionEnd}</span></figcaption>
+    </figure>
+    <ul class="proofs" role="list">
+      {copy.hero.proofs.map((proof, i) => <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d={icons[i]} /></svg>{proof}</li>)}
+    </ul>
+  </section>
 
-      <figure class="hero__art">
-        <div class="hero__arch">
-          <img
-            class="hero__bridge"
-            src="/images/bridge.svg"
-            alt=""
-            width="1600"
-            height="900"
-          />
-          <div class="hero__signal" aria-hidden="true">
-            <span></span><span></span><span></span><span></span><span></span>
-          </div>
-        </div>
-        <figcaption class="hero__caption">
-          <span>Cangas de Onís · Asturias</span>
-          <span>01 / PUENTE</span>
-        </figcaption>
-      </figure>
+  <section class="section features wrap" aria-labelledby="features-title">
+    <div class="section-heading">
+      <div><p class="eyebrow">{copy.features.eyebrow}</p><h2 id="features-title">{copy.features.title}</h2></div>
+      <p class="section-heading__lead">{copy.features.lead}</p>
+    </div>
+    <div class="features__grid">
+      {copy.features.items.map((item, i) => <article class="feature">
+        <span class="feature__icon" aria-hidden="true">{i === 0 ? <svg class="icon" viewBox="0 0 24 24"><path d="M4 10v4m4-8v12m4-15v18m4-15v12m4-8v4" /></svg> : i === 1 ? <svg class="icon" viewBox="0 0 24 24"><path d={icons[0]} /></svg> : <svg class="icon" viewBox="0 0 24 24"><path d="M3 5h12M9 3v2m4 0c-1 7-5 10-10 12m2-9c1 4 4 7 8 9m0 4 4-11 4 11m-6.5-4h5" /></svg>}</span>
+        <h3>{item.title}</h3><p>{item.body}</p>
+      </article>)}
     </div>
   </section>
 
-  <section class="section manifesto" aria-labelledby="what-title">
-    <div class="wrap editorial-grid">
-      <p class="section-index" aria-hidden="true">01 / 05</p>
-      <div class="editorial-copy">
-        <p class="section__eyebrow">PUENTE</p>
-        <h2 class="manifesto__title" id="what-title">{copy.what.title}</h2>
-        <p class="manifesto__body">{copy.what.body}</p>
-        <div class="manifesto__line" aria-hidden="true"></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section process" aria-labelledby="how-title">
-    <div class="wrap">
-      <div class="section-heading">
-        <div>
-          <p class="section__eyebrow">02 / 05</p>
-          <h2 class="section__title" id="how-title">{copy.how.title}</h2>
-        </div>
-        <p class="section__lead">{copy.how.lead}</p>
-      </div>
+  <section class="how" id="como-funciona" aria-labelledby="how-title">
+    <div class="wrap section">
+      <div class="section-heading"><div><p class="eyebrow">{copy.how.eyebrow}</p><h2 id="how-title">{copy.how.title}</h2></div><p class="section-heading__lead">{copy.how.lead}</p></div>
       <ol class="steps">
-        {
-          copy.how.steps.map((step) => (
-            <li class="steps__item">
-              <div class="steps__top">
-                <span class="steps__n" aria-hidden="true">{step.n}</span>
-                <span class="steps__rule" aria-hidden="true"></span>
-              </div>
-              <h3 class="steps__title">{step.title}</h3>
-              <p class="steps__body">{step.body}</p>
-            </li>
-          ))
-        }
+        {copy.how.steps.map(step => <li><span class="steps__n" aria-hidden="true">{step.n}</span><h3>{step.title}</h3><p>{step.body}</p></li>)}
       </ol>
+      <p class="how__note">{copy.how.note}</p>
     </div>
   </section>
 
-  <section class="section privacy" aria-labelledby="privacy-title">
-    <div class="wrap">
-      <div class="privacy__panel">
-        <div class="privacy__copy">
-          <p class="section__eyebrow">03 / 05 · LOCAL</p>
-          <h2 class="section__title" id="privacy-title">{copy.privacy.title}</h2>
-          <p class="section__body">{copy.privacy.body}</p>
-        </div>
-        <div class="privacy__seal" aria-hidden="true">
-          <span class="privacy__orbit privacy__orbit--outer"></span>
-          <span class="privacy__orbit privacy__orbit--inner"></span>
-          <span class="privacy__core">LOCAL</span>
-        </div>
+  <section class="section privacy wrap" id="privacidad" aria-labelledby="privacy-title">
+    <div class="privacy__visual">
+      <div class="privacy__device">
+        <span class="privacy__speaker" aria-hidden="true"></span>
+        <div class="privacy__device-top"><span>Puente</span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d={icons[1]} /></svg></div>
+        <div class="privacy__lock" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none"><path d="M15 22v-8a9 9 0 0 1 18 0v8M12 22h24v19H12zM24 29v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg></div>
+        <p>{copy.privacy.visualTitle}</p><span class="privacy__device-note">{copy.privacy.visualNote}</span>
+        <div class="privacy__audio" aria-hidden="true">{[8, 16, 11, 27, 39, 23, 14, 31, 45, 26, 16, 34, 21, 12, 18, 8].map(height => <i style={`height: ${height}px`}></i>)}</div>
+        <span class="privacy__home" aria-hidden="true"></span>
       </div>
+      <p class="privacy__visual-caption"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6" /></svg>{copy.privacy.status}</p>
+    </div>
+    <div class="privacy__copy"><p class="eyebrow">{copy.privacy.eyebrow}</p><h2 id="privacy-title">{copy.privacy.title}</h2><p class="body-copy">{copy.privacy.body}</p>
+      <ul class="privacy__points" role="list">{copy.privacy.points.map(point => <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6" /></svg>{point}</li>)}</ul>
     </div>
   </section>
 
-  <section class="section models-section" aria-labelledby="models-title">
-    <div class="wrap">
-      <div class="section-heading">
-        <div>
-          <p class="section__eyebrow">04 / 05</p>
-          <h2 class="section__title" id="models-title">{copy.models.title}</h2>
-        </div>
-        <p class="section__lead">{copy.models.lead}</p>
-      </div>
-      <div class="models">
-        <article class="models__block">
-          <div class="models__visual models__visual--wave" aria-hidden="true">
-            <span></span><span></span><span></span><span></span><span></span>
-          </div>
-          <p class="models__index">01 · WHISPER</p>
-          <h3 class="models__title">{copy.models.whisperTitle}</h3>
-          <p class="models__body">{copy.models.whisperBody}</p>
-        </article>
-        <article class="models__block">
-          <div class="models__visual models__visual--languages" aria-hidden="true">
-            <span>ES</span><span>EN</span><span>CA</span><span>TH</span>
-          </div>
-          <p class="models__index">02 · NLLB</p>
-          <h3 class="models__title">{copy.models.nllbTitle}</h3>
-          <p class="models__body">{copy.models.nllbBody}</p>
-        </article>
-      </div>
-      <p class="models__note"><span>i</span>{copy.models.note}</p>
-    </div>
+  <section class="community wrap" id="proyecto" aria-labelledby="community-title">
+    <div class="community__intro"><p class="eyebrow">{copy.community.eyebrow}</p><h2 id="community-title">{copy.community.title}</h2><span class="community__license"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d={icons[3]} /></svg>{copy.community.license}</span></div>
+    <div class="community__copy"><p>{copy.community.body}</p><p>{copy.community.detail}</p><a class="text-link" href={githubUrl} target="_blank" rel="noopener noreferrer">{copy.community.cta}<span aria-hidden="true">↗</span></a></div>
   </section>
 
-  <section class="section community" aria-labelledby="community-title">
-    <div class="wrap community__grid">
-      <div class="community__art">
-        <img
-          src="/icon.png"
-          alt={copy.meta.ogAlt}
-          width="1254"
-          height="1254"
-          loading="lazy"
-        />
-        <span aria-hidden="true">CANGAS DE ONÍS</span>
-      </div>
-      <div class="community__copy">
-        <p class="section__eyebrow">05 / 05 · MIT</p>
-        <h2 class="section__title" id="community-title">{copy.community.title}</h2>
-        <p class="section__body">{copy.community.body}</p>
-        <p class="community-cta">
-          <a
-            class="btn btn--ghost"
-            href={githubUrl}
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            <span>{copy.community.cta}</span>
-            <span aria-hidden="true">↗</span>
-          </a>
-        </p>
-      </div>
-    </div>
+  <section class="section faq wrap" aria-labelledby="faq-title">
+    <h2 id="faq-title">{copy.faq.title}</h2>
+    <div class="faq__items">{copy.faq.items.map(item => <details><summary>{item.question}<span aria-hidden="true">+</span></summary><p>{item.answer}</p></details>)}</div>
   </section>
 
-  <section class="institutional" aria-labelledby="inst-title">
-    <div class="wrap">
-      <div class="institutional__inner">
-        <span class="institutional__mark" aria-hidden="true">“</span>
-        <div>
-          <h2 class="institutional__title" id="inst-title">{copy.institutional.title}</h2>
-          <p class="institutional__body">{copy.institutional.body}</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section closing" aria-labelledby="closing-title">
-    <div class="wrap closing__panel">
-      <div class="closing__arch" aria-hidden="true"></div>
-      <div class="closing__content">
-        <p class="closing__wordmark">PUENTE</p>
-        <h2 class="closing__title" id="closing-title">{copy.closing.title}</h2>
-        <p class="closing__body">{copy.closing.body}</p>
-        <div class="cta-row closing__cta">
-          <a
-            class="btn closing__button"
-            href={githubUrl}
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            <span>{copy.closing.ctaPrimary}</span>
-            <span aria-hidden="true">↗</span>
-          </a>
-          <span class="closing__soon">{copy.closing.ctaSecondary}</span>
-        </div>
-      </div>
-    </div>
-  </section>
+  <section class="closing" aria-labelledby="closing-title"><div class="wrap closing__inner">
+    <div><p class="eyebrow">PUENTE</p><h2 id="closing-title">{copy.closing.title}</h2><p>{copy.closing.body}</p></div>
+    <div class="closing__action"><a class="btn btn--primary" href={githubUrl} target="_blank" rel="noopener noreferrer">{copy.closing.cta}<span aria-hidden="true">↗</span></a><span>{copy.closing.note}</span></div>
+  </div></section>
 </Base>
 
 <style>
-  /* Editorial product layout */
-  .hero {
-    min-height: 100svh;
-    display: grid;
-    align-items: center;
-    padding-block: clamp(8rem, 15vh, 11rem) clamp(4rem, 8vh, 6rem);
-    background:
-      radial-gradient(
-        circle at 78% 20%,
-        color-mix(in srgb, var(--honeydew) 75%, transparent),
-        transparent 34rem
-      ),
-      var(--cream);
-  }
-
-  .hero__grid {
-    position: relative;
-    z-index: 1;
-    display: grid;
-    gap: clamp(3rem, 7vw, 6.5rem);
-    align-items: center;
-  }
-
-  .hero__content {
-    position: relative;
-    z-index: 2;
-    padding: 0;
-    animation: text-in 0.9s var(--ease) 0.08s both;
-  }
-
-  .hero__availability {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.55rem;
-    margin-bottom: 1.5rem;
-    padding: 0.45rem 0.7rem;
-    border: 1px solid var(--line);
-    border-radius: 999px;
-    font-size: 0.7rem;
-    font-weight: 800;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--dim-grey);
-    background: color-mix(in srgb, var(--honeydew) 55%, transparent);
-  }
-
-  .hero__availability-dot {
-    width: 0.45rem;
-    height: 0.45rem;
-    border-radius: 50%;
-    background: var(--dim-grey);
-    box-shadow: 0 0 0 0.25rem color-mix(in srgb, var(--dim-grey) 12%, transparent);
-  }
-
-  .hero__brand {
-    margin: 0;
-    font-size: clamp(4.2rem, 12vw, 8rem);
-    font-weight: 900;
-    line-height: 0.82;
-    letter-spacing: -0.065em;
-    text-transform: none;
-    color: var(--ink);
-  }
-
-  .hero__slogan {
-    margin: 1.5rem 0 0;
-    max-width: 18ch;
-    font-size: clamp(1.35rem, 3vw, 2.15rem);
-    font-weight: 700;
-    line-height: 1.15;
-    letter-spacing: -0.025em;
-    color: var(--dim-grey);
-  }
-
-  .hero__lead {
-    margin: 1.35rem 0 0;
-    max-width: 34rem;
-    font-size: clamp(1rem, 1.8vw, 1.15rem);
-    line-height: 1.65;
-    color: var(--ink);
-  }
-
-  .hero__cta {
-    margin-top: 2rem;
-  }
-
-  .hero__cta .btn {
-    justify-content: space-between;
-    min-width: 13rem;
-  }
-
-  .hero__proofs {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.6rem;
-    margin: 2.25rem 0 0;
-    padding: 0;
-    list-style: none;
-  }
-
-  .hero__proofs li {
-    padding: 0.45rem 0.7rem;
-    border: 1px solid var(--line);
-    border-radius: 0.55rem;
-    font-size: 0.65rem;
-    font-weight: 800;
-    letter-spacing: 0.13em;
-    color: var(--dim-grey);
-  }
-
-  .hero__art {
-    position: relative;
-    width: min(100%, 34rem);
-    margin: 0 auto;
-    animation: art-in 1.1s var(--ease) 0.15s both;
-  }
-
-  .hero__arch {
-    position: relative;
-    aspect-ratio: 4 / 5;
-    overflow: hidden;
-    border: 1px solid var(--line);
-    border-radius: 18rem 18rem 1.4rem 1.4rem;
-    background: var(--honeydew);
-    box-shadow:
-      0 1.5rem 4rem color-mix(in srgb, var(--ink) 12%, transparent),
-      inset 0 0 0 0.5rem color-mix(in srgb, var(--cream) 28%, transparent);
-  }
-
-  .hero__bridge {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    opacity: 0.94;
-    animation: none;
-    transform: scale(1.04);
-    transition: transform 800ms var(--ease);
-  }
-
-  .hero__art:hover .hero__bridge {
-    transform: scale(1);
-  }
-
-  .hero__signal {
-    position: absolute;
-    right: 1.25rem;
-    bottom: 1.25rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.2rem;
-    width: 4.25rem;
-    height: 4.25rem;
-    border: 1px solid color-mix(in srgb, var(--cream) 55%, transparent);
-    border-radius: 1rem;
-    background: color-mix(in srgb, var(--cream) 82%, transparent);
-    backdrop-filter: blur(12px);
-  }
-
-  .hero__signal span,
-  .models__visual--wave span {
-    display: block;
-    width: 0.22rem;
-    border-radius: 999px;
-    background: var(--ink);
-  }
-
-  .hero__signal span:nth-child(1),
-  .hero__signal span:nth-child(5) {
-    height: 0.75rem;
-  }
-
-  .hero__signal span:nth-child(2),
-  .hero__signal span:nth-child(4) {
-    height: 1.35rem;
-  }
-
-  .hero__signal span:nth-child(3) {
-    height: 1.9rem;
-  }
-
-  .hero__caption {
-    display: flex;
-    justify-content: space-between;
-    gap: 1rem;
-    margin-top: 0.8rem;
-    font-size: 0.62rem;
-    font-weight: 800;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--dim-grey);
-  }
-
-  .editorial-grid {
-    display: grid;
-    gap: 2rem;
-  }
-
-  .section-index {
-    margin: 0;
-    font-size: 0.72rem;
-    font-weight: 800;
-    letter-spacing: 0.14em;
-    color: var(--dim-grey);
-  }
-
-  .manifesto__title {
-    margin: 0;
-    max-width: 12ch;
-    font-size: clamp(3rem, 8vw, 6.5rem);
-    font-weight: 800;
-    line-height: 0.94;
-    letter-spacing: -0.055em;
-    color: var(--ink);
-  }
-
-  .manifesto__body {
-    margin: 2rem 0 0;
-    max-width: 43rem;
-    font-size: clamp(1.15rem, 2vw, 1.5rem);
-    line-height: 1.55;
-    color: var(--dim-grey);
-  }
-
-  .manifesto__line {
-    width: min(100%, 43rem);
-    height: 0.35rem;
-    margin-top: 2.5rem;
-    border-radius: 999px;
-    background:
-      linear-gradient(
-        to right,
-        var(--desert-sand) 0 16%,
-        var(--sand-dune) 16% 55%,
-        var(--honeydew) 55%
-      );
-  }
-
-  .process {
-    background: var(--honeydew);
-  }
-
-  .process .section__eyebrow,
-  .process .section__lead {
-    color: var(--ink);
-  }
-
-  .section-heading {
-    display: grid;
-    gap: 1.25rem;
-    align-items: end;
-    margin-bottom: clamp(2.5rem, 5vw, 4rem);
-  }
-
-  .section-heading .section__lead {
-    max-width: 28rem;
-  }
-
-  .steps {
-    display: grid;
-    gap: 1rem;
-    margin: 0;
-  }
-
-  .steps__item {
-    display: block;
-    min-height: 18rem;
-    padding: clamp(1.5rem, 3vw, 2rem);
-    border: 1px solid var(--line);
-    border-radius: 1.5rem;
-    background: color-mix(in srgb, var(--cream) 88%, transparent);
-    transition:
-      transform 250ms var(--ease),
-      border-color 250ms var(--ease);
-  }
-
-  .steps__item:hover {
-    transform: translateY(-0.35rem);
-    border-color: color-mix(in srgb, var(--ink) 25%, transparent);
-  }
-
-  .steps__top {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: 4.5rem;
-  }
-
-  .steps__n {
-    flex: none;
-    width: 2.35rem;
-    height: 2.35rem;
-    display: grid;
-    place-items: center;
-    border-radius: 0.7rem;
-    font-size: 0.7rem;
-    color: var(--ink);
-    background: var(--desert-sand);
-  }
-
-  .steps__rule {
-    width: 100%;
-    height: 1px;
-    background: var(--line);
-  }
-
-  .steps__title {
-    margin: 0 0 0.7rem;
-    font-size: 1.25rem;
-    line-height: 1.2;
-  }
-
-  .steps__body {
-    margin: 0;
-    font-size: 0.95rem;
-  }
-
-  .privacy {
-    padding-top: 0;
-  }
-
-  .privacy__panel {
-    position: relative;
-    display: grid;
-    gap: 3rem;
-    align-items: center;
-    min-height: 35rem;
-    overflow: hidden;
-    padding: clamp(2rem, 7vw, 5.5rem);
-    border-radius: clamp(1.5rem, 4vw, 3rem);
-    color: var(--cream);
-    background: var(--ink);
-  }
-
-  .privacy__copy {
-    position: relative;
-    z-index: 2;
-  }
-
-  .privacy .section__eyebrow,
-  .privacy .section__body {
-    color: color-mix(in srgb, var(--cream) 70%, transparent);
-  }
-
-  .privacy .section__title {
-    max-width: 13ch;
-    color: var(--cream);
-  }
-
-  .privacy__seal {
-    position: relative;
-    width: min(72vw, 20rem);
-    aspect-ratio: 1;
-    margin: auto;
-    display: grid;
-    place-items: center;
-  }
-
-  .privacy__orbit {
-    position: absolute;
-    border: 1px solid color-mix(in srgb, var(--cream) 18%, transparent);
-    border-radius: 50%;
-  }
-
-  .privacy__orbit--outer {
-    inset: 0;
-  }
-
-  .privacy__orbit--inner {
-    inset: 18%;
-  }
-
-  .privacy__core {
-    display: grid;
-    width: 42%;
-    aspect-ratio: 1;
-    place-items: center;
-    border-radius: 50%;
-    font-size: 0.72rem;
-    font-weight: 800;
-    letter-spacing: 0.16em;
-    color: var(--ink);
-    background: var(--cream);
-    box-shadow: 0 0 0 1.25rem color-mix(in srgb, var(--cream) 7%, transparent);
-  }
-
-  .models-section {
-    background: var(--cream);
-  }
-
-  .models {
-    display: grid;
-    gap: 1rem;
-    margin: 0;
-  }
-
-  .models__block {
-    min-height: 29rem;
-    padding: clamp(1.5rem, 3vw, 2.25rem);
-    border: 1px solid var(--line);
-    border-radius: 1.75rem;
-    background: var(--honeydew);
-  }
-
-  .models__block:nth-child(2) {
-    background: var(--sand-dune);
-  }
-
-  .models__visual {
-    height: 12rem;
-    margin-bottom: 2rem;
-    border-radius: 1.25rem;
-    background: color-mix(in srgb, var(--cream) 62%, transparent);
-  }
-
-  .models__visual--wave {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.45rem;
-  }
-
-  .models__visual--wave span {
-    width: 0.45rem;
-  }
-
-  .models__visual--wave span:nth-child(1),
-  .models__visual--wave span:nth-child(5) {
-    height: 2.25rem;
-  }
-
-  .models__visual--wave span:nth-child(2),
-  .models__visual--wave span:nth-child(4) {
-    height: 4.5rem;
-  }
-
-  .models__visual--wave span:nth-child(3) {
-    height: 7rem;
-  }
-
-  .models__visual--languages {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.5rem;
-    padding: 1rem;
-  }
-
-  .models__visual--languages span {
-    display: grid;
-    place-items: center;
-    border: 1px solid var(--line);
-    border-radius: 0.8rem;
-    font-size: 0.72rem;
-    font-weight: 800;
-    letter-spacing: 0.12em;
-    color: var(--dim-grey);
-    background: color-mix(in srgb, var(--cream) 58%, transparent);
-  }
-
-  .models__index {
-    margin: 0 0 0.6rem;
-    font-size: 0.68rem;
-    font-weight: 800;
-    letter-spacing: 0.14em;
-    color: var(--ink);
-  }
-
-  .models__title {
-    margin: 0 0 0.65rem;
-    font-size: 1.55rem;
-  }
-
-  .models__note {
-    display: flex;
-    align-items: center;
-    gap: 0.65rem;
-    margin-top: 1.25rem;
-  }
-
-  .models__note span {
-    display: grid;
-    flex: none;
-    width: 1.5rem;
-    height: 1.5rem;
-    place-items: center;
-    border: 1px solid var(--line);
-    border-radius: 50%;
-    font-size: 0.7rem;
-    font-weight: 800;
-  }
-
-  .community {
-    background: var(--honeydew);
-  }
-
-  .community .section__eyebrow,
-  .community .section__body {
-    color: var(--ink);
-  }
-
-  .community__grid {
-    display: grid;
-    gap: clamp(2.5rem, 7vw, 6rem);
-    align-items: center;
-  }
-
-  .community__art {
-    position: relative;
-    overflow: hidden;
-    border: 1px solid var(--line);
-    border-radius: 1.75rem;
-    background: var(--sand-dune);
-  }
-
-  .community__art img {
-    width: 100%;
-    aspect-ratio: 1;
-    object-fit: cover;
-    transition: transform 800ms var(--ease);
-  }
-
-  .community__art:hover img {
-    transform: scale(1.025);
-  }
-
-  .community__art span {
-    position: absolute;
-    left: 1rem;
-    bottom: 1rem;
-    padding: 0.5rem 0.7rem;
-    border-radius: 0.55rem;
-    font-size: 0.62rem;
-    font-weight: 800;
-    letter-spacing: 0.12em;
-    color: var(--cream);
-    background: color-mix(in srgb, var(--ink) 75%, transparent);
-    backdrop-filter: blur(10px);
-  }
-
-  .community-cta {
-    margin-top: 2rem;
-  }
-
-  .community-cta .btn {
-    gap: 1rem;
-  }
-
-  .institutional {
-    padding-block: clamp(4rem, 8vw, 6rem);
-    background: var(--sand-dune);
-  }
-
-  .institutional__inner {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: clamp(1rem, 4vw, 3rem);
-    align-items: start;
-    max-width: 62rem;
-  }
-
-  .institutional__mark {
-    font-size: clamp(4rem, 9vw, 7rem);
-    font-weight: 800;
-    line-height: 0.75;
-    color: var(--dim-grey);
-  }
-
-  .institutional__title {
-    margin: 0 0 0.75rem;
-    font-size: clamp(1.4rem, 3vw, 2rem);
-    line-height: 1.15;
-    color: var(--ink);
-  }
-
-  .institutional__body {
-    margin: 0;
-    max-width: 48rem;
-    font-size: clamp(1rem, 1.8vw, 1.2rem);
-    font-style: normal;
-    color: var(--ink);
-  }
-
-  .closing {
-    background: var(--cream);
-  }
-
-  .closing__panel {
-    position: relative;
-    min-height: 38rem;
-    overflow: hidden;
-    display: grid;
-    align-items: center;
-    padding: clamp(2rem, 7vw, 5.5rem);
-    border-radius: clamp(1.5rem, 4vw, 3rem);
-    color: var(--cream);
-    background: var(--ink);
-  }
-
-  .closing__arch {
-    position: absolute;
-    right: clamp(-8rem, -6vw, -2rem);
-    bottom: -14rem;
-    width: min(70vw, 34rem);
-    aspect-ratio: 1;
-    border: clamp(2rem, 7vw, 5rem) solid color-mix(in srgb, var(--cream) 7%, transparent);
-    border-radius: 50%;
-  }
-
-  .closing__content {
-    position: relative;
-    z-index: 1;
-    max-width: 43rem;
-  }
-
-  .closing__wordmark {
-    margin: 0 0 1.5rem;
-    font-size: 0.75rem;
-    font-weight: 800;
-    letter-spacing: 0.2em;
-    color: color-mix(in srgb, var(--cream) 65%, transparent);
-  }
-
-  .closing__title {
-    margin: 0;
-    max-width: 12ch;
-    font-size: clamp(2.8rem, 7vw, 5.5rem);
-    font-weight: 800;
-    line-height: 0.98;
-    letter-spacing: -0.05em;
-    color: var(--cream);
-  }
-
-  .closing__body {
-    max-width: 34rem;
-    margin: 1.5rem 0 0;
-    color: color-mix(in srgb, var(--cream) 72%, transparent);
-  }
-
-  .closing__cta {
-    margin-top: 2rem;
-  }
-
-  .closing__button {
-    justify-content: space-between;
-    min-width: 13rem;
-    color: var(--ink);
-    background: var(--cream);
-  }
-
-  .closing__button:hover {
-    transform: translateY(-2px);
-    background: var(--honeydew);
-  }
-
-  .closing__soon {
-    font-size: 0.85rem;
-    color: color-mix(in srgb, var(--cream) 65%, transparent);
-  }
-
-  @media (min-width: 800px) {
-    .hero__grid {
-      grid-template-columns: minmax(0, 1fr) minmax(20rem, 0.82fr);
-    }
-
-    .editorial-grid {
-      grid-template-columns: 9rem 1fr;
-    }
-
-    .section-heading {
-      grid-template-columns: 1fr auto;
-    }
-
-    .steps {
-      grid-template-columns: repeat(3, 1fr);
-    }
-
-    .privacy__panel {
-      grid-template-columns: 1.15fr 0.85fr;
-    }
-
-    .models {
-      grid-template-columns: repeat(2, 1fr);
-    }
-
-    .community__grid {
-      grid-template-columns: minmax(18rem, 0.85fr) minmax(0, 1fr);
-    }
-  }
-
-  @media (max-width: 799px) {
-    .hero {
-      min-height: auto;
-    }
-
-    .hero__content {
-      order: 1;
-    }
-
-    .hero__art {
-      order: 2;
-      width: min(88vw, 30rem);
-    }
-
-    .privacy__panel {
-      min-height: auto;
-    }
-  }
-
-  @media (max-width: 520px) {
-    .hero {
-      padding-top: 7.5rem;
-    }
-
-    .hero__brand {
-      font-size: clamp(3.7rem, 20vw, 5rem);
-    }
-
-    .hero__caption {
-      font-size: 0.55rem;
-    }
-
-    .hero__proofs {
-      margin-top: 1.5rem;
-    }
-
-    .steps__item {
-      min-height: 16rem;
-    }
-
-    .privacy__panel,
-    .closing__panel {
-      margin-inline: -0.2rem;
-    }
-
-    .institutional__inner {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  @keyframes art-in {
-    from {
-      opacity: 0;
-      transform: translateY(2rem) scale(0.985);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0) scale(1);
-    }
-  }
-
-  @keyframes text-in {
-    from {
-      opacity: 0;
-      transform: translateY(1rem);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+  .hero { padding-top: clamp(3rem, 5.5vw, 5.25rem); }
+  .hero__intro { display: grid; grid-template-columns: 1.35fr 1fr; gap: 3rem; align-items: center; margin-bottom: 2.75rem; }
+  h1 { margin: 0; font-size: clamp(2.8rem, 4.75vw, 4.65rem); line-height: 1.12; font-weight: 600; letter-spacing: -.055em; }
+  h1 span { color: var(--brown); }
+  .hero__copy { padding-top: 1.75rem; }
+  .hero__lead { max-width: 28rem; margin-bottom: 1.5rem; font-size: clamp(1rem, 1.3vw, 1.12rem); line-height: 1.8; color: var(--muted); }
+  .hero__actions { display: flex; align-items: center; flex-wrap: wrap; gap: .5rem 1.5rem; }
+  .hero__availability { margin: .9rem 0 0; font-size: .67rem; color: var(--muted); }
+  .hero__figure { margin: 0; }
+  .hero__landscape { position: relative; height: clamp(22rem, 30vw, 27rem); border-radius: 7px; }
+  .hero__image { width: 100%; height: 100%; object-fit: cover; object-position: 50% 54%; border-radius: inherit; }
+  .hero__figure figcaption { display: flex; justify-content: space-between; gap: 1rem; margin-top: .75rem; font-size: .65rem; color: var(--muted); }
+  .conversation { position: absolute; bottom: 1.6rem; right: 1.6rem; width: 17rem; padding: 1.2rem 1.35rem .9rem; border: 1px solid rgb(255 255 255 / 70%); border-radius: 9px; background: rgb(255 255 255 / 97%); box-shadow: 0 8px 35px #17261f20; }
+  .conversation__top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.15rem; }
+  .conversation__brand { font-size: .95rem; font-weight: 800; letter-spacing: -.05em; }
+  .conversation__offline { display: flex; align-items: center; gap: .35rem; font-size: .57rem; color: #56654f; }
+  .conversation__offline > span { width: 5px; height: 5px; border-radius: 50%; background: #697d61; }
+  .conversation__language { display: flex; align-items: center; justify-content: space-between; font-size: .6rem; color: var(--muted); }
+  .conversation__phrase p, .conversation__translation p { margin: .2rem 0 0; font-size: 1rem; font-weight: 600; letter-spacing: -.025em; }
+  .conversation__translation { margin-top: .85rem; padding: .8rem .9rem; background: #f3eee8; border-radius: 4px; color: var(--brown-dark); }
+  .conversation__bottom { display: flex; align-items: center; gap: .35rem; margin-top: 1rem; color: var(--muted); font-size: .55rem; }
+  .conversation__bottom .icon { width: .85rem; height: .85rem; }
+  .conversation__wave { display: flex; align-items: center; gap: 2px; margin-left: auto; height: 18px; }
+  .conversation__wave i { width: 2px; height: 5px; border-radius: 1px; background: var(--brown); }
+  .conversation__wave i:nth-child(2n) { height: 12px; }
+  .conversation__wave i:nth-child(3) { height: 18px; }
+  .conversation__example { display: block; margin-top: .65rem; font-size: .5rem; color: var(--muted); }
+  .proofs { display: grid; grid-template-columns: repeat(4, 1fr); margin: 2rem 0 0; padding: 1.5rem 0; list-style: none; border-block: 1px solid var(--line); }
+  .proofs li { display: flex; align-items: center; justify-content: center; gap: .75rem; padding-inline: .5rem; font-size: .79rem; font-weight: 600; }
+  .proofs li + li { border-left: 1px solid var(--line); }
+  .proofs .icon { color: var(--brown); }
+  .section-heading { display: grid; grid-template-columns: 1.35fr 1fr; align-items: end; gap: 3rem; margin-bottom: 3.5rem; }
+  .section-heading h2 { margin-bottom: 0; }
+  .section-heading__lead { margin: 0; max-width: 28rem; color: var(--muted); font-size: .95rem; }
+  .features__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3.75rem; }
+  .feature__icon { display: grid; place-items: center; width: 2.5rem; height: 2.5rem; margin-bottom: 1.3rem; color: var(--brown); background: var(--tint); border-radius: 6px; }
+  .feature h3 { margin-bottom: .65rem; }
+  .feature p, .steps p { margin-bottom: 0; font-size: .9rem; color: var(--muted); }
+  .how { background: var(--tint); }
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3.75rem; padding: 0; margin: 0; list-style: none; }
+  .steps__n { display: block; padding-bottom: 1rem; margin-bottom: 1.3rem; border-bottom: 1px solid #dcd2c7; color: var(--brown); font-size: .8rem; font-weight: 700; }
+  .steps h3 { margin-bottom: .65rem; }
+  .how__note { margin: 2.4rem 0 0; font-size: .72rem; color: var(--muted); }
+  .privacy { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: clamp(3rem, 8vw, 8rem); }
+  .privacy__visual { min-height: 29rem; display: grid; place-content: center; justify-items: center; background: var(--tint); border: 1px solid var(--line); border-radius: 7px; padding: 2.5rem 1rem 1.5rem; }
+  .privacy__device { position: relative; display: flex; flex-direction: column; align-items: center; width: 13.5rem; min-height: 22rem; border: 1px solid #d7cec4; border-radius: 1.7rem; padding: 2.1rem 1.2rem 2.5rem; background: white; box-shadow: 0 12px 30px #5d412710; }
+  .privacy__speaker { position: absolute; top: .65rem; left: calc(50% - 1.1rem); height: 3px; width: 2.2rem; border-radius: 4px; background: #ded7cf; }
+  .privacy__device-top { display: flex; justify-content: space-between; align-items: center; width: 100%; color: var(--brown); }
+  .privacy__device-top > span { font-size: .85rem; font-weight: 800; letter-spacing: -.05em; }
+  .privacy__device-top .icon { width: 1rem; height: 1rem; }
+  .privacy__lock { width: 3.1rem; margin-top: 2rem; color: var(--brown); }
+  .privacy__device p { margin: 1.1rem 0 .5rem; max-width: 11rem; font-size: 1.05rem; line-height: 1.35; font-weight: 600; text-align: center; letter-spacing: -.03em; }
+  .privacy__device-note { font-size: .57rem; color: var(--muted); }
+  .privacy__audio { display: flex; align-items: center; gap: 4px; height: 45px; margin-top: 1.5rem; }
+  .privacy__audio i { width: 3px; border-radius: 3px; background: #ad8b6d; }
+  .privacy__home { position: absolute; bottom: .7rem; width: 3rem; height: 3px; background: #ded7cf; border-radius: 3px; }
+  .privacy__visual-caption { display: flex; align-items: center; gap: .4rem; margin: 1.25rem 0 0; font-size: .65rem; color: var(--muted); }
+  .privacy__visual-caption .icon { width: .95rem; height: .95rem; }
+  .body-copy { color: var(--muted); font-size: .95rem; }
+  .privacy__points { display: grid; gap: .85rem; margin: 1.75rem 0 0; padding: 0; list-style: none; }
+  .privacy__points li { display: flex; align-items: start; gap: .65rem; font-size: .85rem; }
+  .privacy__points .icon { color: var(--brown); margin-top: .15rem; }
+  .community { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(3rem, 8vw, 8rem); padding-block: clamp(3.5rem, 6vw, 5.5rem); border-block: 1px solid var(--line); }
+  .community__license { display: flex; gap: .6rem; align-items: center; margin-top: 1.5rem; color: var(--brown); font-size: .75rem; }
+  .community__copy { color: var(--muted); font-size: .95rem; }
+  .community__copy .text-link { color: var(--brown); border-bottom: 1px solid #d7c2b1; }
+  .faq { display: grid; grid-template-columns: 1fr 1.3fr; gap: 5rem; }
+  .faq h2 { font-size: clamp(1.8rem, 2.8vw, 2.5rem); }
+  .faq details { border-bottom: 1px solid var(--line); }
+  .faq details:first-child { border-top: 1px solid var(--line); }
+  .faq summary { display: flex; align-items: center; justify-content: space-between; gap: 1.25rem; padding-block: 1.25rem; list-style: none; cursor: pointer; font-size: .9rem; font-weight: 600; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary:hover { color: var(--brown); }
+  .faq summary span { font-size: 1.35rem; font-weight: 400; color: var(--brown); transition: transform 180ms; }
+  .faq details[open] summary span { transform: rotate(45deg); }
+  .faq details p { padding-right: 2rem; margin-bottom: 1.25rem; color: var(--muted); font-size: .88rem; }
+  .closing { background: var(--tint); }
+  .closing__inner { display: flex; align-items: center; justify-content: space-between; gap: 3rem; padding-block: 4.5rem; }
+  .closing h2 { font-size: clamp(2rem, 3.5vw, 3rem); }
+  .closing p:not(.eyebrow) { margin: 0; color: var(--muted); font-size: .88rem; }
+  .closing__action { display: flex; flex-direction: column; align-items: center; gap: .8rem; }
+  .closing__action > span { color: var(--muted); font-size: .67rem; }
+  @media (min-width: 1500px) { h1 { font-size: 4.1rem; } }
+  @media (max-width: 1050px) {
+    .hero__intro, .section-heading { grid-template-columns: 1.15fr 1fr; gap: 2rem; }
+    .hero__actions { column-gap: 1rem; }
+    .hero__actions .btn, .hero__actions .text-link { font-size: .75rem; }
+    .features__grid, .steps { gap: 2rem; }
+    .privacy, .community { gap: 3rem; }
+    .faq { gap: 3rem; }
+  }
+  @media (max-width: 760px) {
+    .hero__intro, .section-heading { grid-template-columns: 1fr; gap: 1.4rem; }
+    h1 { font-size: clamp(2.65rem, 7.6vw, 3.9rem); }
+    .hero__copy { padding-top: 0; }
+    .hero__lead { max-width: 34rem; }
+    .hero__intro { margin-bottom: 2rem; }
+    .hero__actions .btn, .hero__actions .text-link { font-size: .84rem; }
+    .hero__landscape { height: 28rem; }
+    .hero__image { object-position: 40% 50%; }
+    .conversation { right: 1rem; bottom: 1rem; width: 15.5rem; }
+    .proofs { grid-template-columns: repeat(2, 1fr); row-gap: 1.4rem; }
+    .proofs li { justify-content: flex-start; font-size: .74rem; }
+    .proofs li + li { border-left: none; }
+    .proofs li:nth-child(even) { padding-left: 1rem; }
+    .section-heading { margin-bottom: 2.5rem; }
+    .features__grid { grid-template-columns: 1fr; gap: 2rem; }
+    .feature { display: grid; grid-template-columns: 2.5rem 1fr; column-gap: 1.15rem; }
+    .feature__icon { grid-row: span 2; margin: 0; }
+    .feature h3 { margin-top: .3rem; }
+    .steps { grid-template-columns: 1fr; gap: 2rem; }
+    .steps li { display: grid; grid-template-columns: 2.5rem 1fr; column-gap: 1.15rem; }
+    .steps__n { grid-row: span 2; align-self: start; padding: .2rem 0 .75rem; margin: 0; }
+    .privacy { grid-template-columns: 1fr; }
+    .privacy__copy { grid-row: 1; }
+    .privacy__visual { min-height: 27rem; }
+    .community, .faq { grid-template-columns: 1fr; gap: 2rem; }
+    .faq h2 { margin: 0; }
+    .closing__inner { flex-direction: column; align-items: flex-start; gap: 2rem; padding-block: 3.5rem; }
+    .closing__action { align-items: flex-start; }
+  }
+  @media (max-width: 440px) {
+    .hero__landscape { height: auto; padding-bottom: 0; background: var(--tint); border: 1px solid var(--line); }
+    .hero__image { height: 15rem; object-position: 47% 50%; border-radius: 6px 6px 0 0; }
+    .conversation { position: relative; right: auto; bottom: auto; width: calc(100% - 2rem); margin: -2.5rem auto 1rem; box-shadow: 0 4px 18px #17261f0c; border-color: var(--line); }
+    .hero__figure figcaption { font-size: .58rem; }
+    .hero__figure figcaption > span:last-child { display: none; }
+    .proofs li { font-size: .64rem; gap: .5rem; }
+    .proofs .icon { width: 1rem; height: 1rem; }
+    .hero__actions { gap: .4rem 1rem; }
+    .hero__actions .text-link { font-size: .78rem; }
   }
 </style>
