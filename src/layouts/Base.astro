@@ -14,11 +14,24 @@ import Analytics from "@vercel/analytics/astro";
 
 interface Props {
   locale: Locale;
+  title?: string;
+  description?: string;
+  alternatePaths?: Partial<Record<Locale, string>>;
+  internalPage?: boolean;
 }
 
-const { locale } = Astro.props;
+const { locale, title, description, alternatePaths, internalPage = false } = Astro.props;
 const copy = t(locale);
-const canonical = new URL(localePath(locale), Astro.site).href;
+const localizedPath = (targetLocale: Locale) => alternatePaths?.[targetLocale] ?? localePath(targetLocale);
+const appPrivacyPaths: Record<Locale, string> = {
+  es: "/politica-de-privacidad",
+  ca: "/ca/politica-de-privacitat",
+  en: "/en/privacy-policy",
+};
+const pageTitle = title ?? copy.meta.title;
+const pageDescription = description ?? copy.meta.description;
+const homePath = internalPage ? localePath(locale) : "";
+const canonical = new URL(localizedPath(locale), Astro.site).href;
 // Static share image in public/ — no runtime OG generation (Satori, etc.).
 const ogImagePath = "/og.png";
 const ogImage = new URL(ogImagePath, Astro.site);
@@ -82,27 +95,27 @@ const structuredData = {
     <meta name="generator" content={Astro.generator} />
     <meta name="robots" content="index, follow" />
     <meta name="theme-color" content={themeColor} />
-    <title>{copy.meta.title}</title>
-    <meta name="description" content={copy.meta.description} />
+    <title>{pageTitle}</title>
+    <meta name="description" content={pageDescription} />
     <link rel="canonical" href={canonical} />
     {
       locales.map((l) => (
         <link
           rel="alternate"
           hreflang={l}
-          href={new URL(localePath(l), Astro.site).href}
+          href={new URL(localizedPath(l), Astro.site).href}
         />
       ))
     }
     <link
       rel="alternate"
       hreflang="x-default"
-      href={new URL(localePath("es"), Astro.site).href}
+      href={new URL(localizedPath("es"), Astro.site).href}
     />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content={siteName} />
-    <meta property="og:title" content={copy.meta.title} />
-    <meta property="og:description" content={copy.meta.description} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
     <meta property="og:url" content={canonical} />
     <meta property="og:locale" content={ogLocale[locale]} />
     {
@@ -116,8 +129,8 @@ const structuredData = {
     <meta property="og:image:type" content="image/png" />
     <meta property="og:image:alt" content={copy.meta.ogAlt} />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={copy.meta.title} />
-    <meta name="twitter:description" content={copy.meta.description} />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={pageDescription} />
     <meta name="twitter:image" content={ogImage.href} />
     <meta name="twitter:image:alt" content={copy.meta.ogAlt} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
@@ -138,9 +151,9 @@ const structuredData = {
           <span>Puente</span>
         </a>
         <nav class="section-nav" aria-label={copy.nav.label}>
-          <a href="#como-funciona">{copy.nav.how}</a>
-          <a href="#privacidad">{copy.nav.privacy}</a>
-          <a href="#proyecto">{copy.nav.project}</a>
+          <a href={`${homePath}#como-funciona`}>{copy.nav.how}</a>
+          <a href={`${homePath}#privacidad`}>{copy.nav.privacy}</a>
+          <a href={`${homePath}#proyecto`}>{copy.nav.project}</a>
         </nav>
         <nav class="site-nav" aria-label={copy.nav.langLabel}>
           <ul class="lang-switch" role="list">
@@ -148,7 +161,7 @@ const structuredData = {
               locales.map((l) => (
                 <li>
                   <a
-                    href={localePath(l)}
+                    href={localizedPath(l)}
                     hreflang={l}
                     aria-current={l === locale ? "page" : undefined}
                   >
@@ -185,6 +198,7 @@ const structuredData = {
             <a href="/LICENSE.txt" rel="license">{copy.footer.license}</a>
             · {copy.footer.rights}
           </p>
+          <p><a href={appPrivacyPaths[locale]}>{copy.footer.appPrivacy}</a></p>
           <p>
             <a href="https://github.com/pablovallejodev/puente-web" rel="noopener noreferrer" target="_blank">{copy.footer.source}</a>
           </p>
@@ -193,7 +207,7 @@ const structuredData = {
               locales.map((l) => (
                 <li>
                   <a
-                    href={localePath(l)}
+                    href={localizedPath(l)}
                     hreflang={l}
                     aria-current={l === locale ? "page" : undefined}
                   >

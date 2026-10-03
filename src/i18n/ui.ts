@@ -160,6 +160,7 @@ export const ui = {
       source: "Código fuente de la web",
       by: "Un proyecto de Pablo Vallejo",
       rights: "© 2026 Pablo Vallejo",
+      appPrivacy: "Privacidad de la app",
     },
   },
   ca: {
@@ -312,6 +313,7 @@ export const ui = {
       source: "Codi font del web",
       by: "Un projecte de Pablo Vallejo",
       rights: "© 2026 Pablo Vallejo",
+      appPrivacy: "Privacitat de l’app",
     },
   },
   en: {
@@ -464,6 +466,7 @@ export const ui = {
       source: "Website source code",
       by: "A project by Pablo Vallejo",
       rights: "© 2026 Pablo Vallejo",
+      appPrivacy: "App privacy policy",
     },
   },
 } as const;

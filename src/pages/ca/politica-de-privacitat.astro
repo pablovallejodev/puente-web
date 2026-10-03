@@ -1,0 +1,17 @@
+---
+import Base from "../../layouts/Base.astro";
+import PrivacyPolicy from "../../components/PrivacyPolicy.astro";
+
+const locale = "ca";
+const title = "Política de privacitat de Puente per a Android";
+const description = "Informació sobre el tractament de dades quan fas servir Puente per a Android, el processament local de veu i les connexions a serveis externs.";
+const alternatePaths = {
+  es: "/politica-de-privacidad",
+  ca: "/ca/politica-de-privacitat",
+  en: "/en/privacy-policy",
+} as const;
+---
+
+<Base {locale} {title} {description} {alternatePaths} internalPage>
+  <PrivacyPolicy {locale} />
+</Base>

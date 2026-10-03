@@ -1,0 +1,87 @@
+---
+import type { Locale } from "../i18n/ui";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const copy = {
+  es: {
+    title: "Política de privacidad de Puente para Android",
+    updated: "Última actualización: 3 de octubre de 2026",
+    intro: "Esta política explica qué ocurre con la información al utilizar Puente, la aplicación para Android. Se refiere únicamente a la app; no cubre este sitio web ni los servicios externos, que se rigen por sus propias políticas.",
+    sections: [
+      { title: "Responsable", paragraphs: ["El responsable de la aplicación es Pablo Vallejo. Para consultas relacionadas con privacidad, puedes contactar a través del repositorio del proyecto en GitHub: ", "https://github.com/pablovallejodev/puente"] },
+      { title: "Uso del micrófono, voz y traducciones", paragraphs: ["Cuando activas el micrófono, Puente procesa el audio en el propio dispositivo para inferir (reconocer) la voz y traducirla. El audio se procesa mientras se utiliza el micrófono y Puente no lo almacena. La app no envía al responsable la voz ni las transcripciones, y el responsable no recopila estos datos mediante la app. No se guarda un historial de conversaciones en servidores del responsable.", "El procesamiento de voz y traducción se realiza localmente con los modelos disponibles en el dispositivo. La conexión a internet no es necesaria para este procesamiento una vez descargados los modelos correspondientes."] },
+      { title: "Datos y ajustes guardados en el dispositivo", paragraphs: ["Los ajustes de la app y los archivos de los modelos descargados permanecen en el dispositivo; el responsable no recibe copias. Puedes gestionar los permisos desde Android y eliminar los datos locales desinstalando la app, conforme al comportamiento de Android y a los ajustes de tu dispositivo."] },
+      { title: "Descarga de modelos y servicios externos", paragraphs: ["La descarga de modelos, que requiere conexión a internet, se sirve desde Hugging Face y puede utilizar la infraestructura de distribución de archivos de ese proveedor. Al realizar estas solicitudes, el proveedor y la infraestructura de red pueden tratar tu dirección IP y datos técnicos de conexión (por ejemplo, cabeceras de la solicitud) para entregar los archivos, de acuerdo con sus propias políticas: ", "https://huggingface.co/privacy", "Esta comunicación se produce para descargar modelos; Puente no envía tu audio ni tus transcripciones como parte de esa descarga. Una vez descargados los modelos necesarios, el procesamiento de voz y la traducción se realizan localmente."] },
+      { title: "Analítica, pagos y publicidad", paragraphs: ["La app no incorpora analítica ni pagos. El responsable no utiliza la app para recopilar datos personales de uso. Esto no describe el sitio web de Puente, que queda fuera del alcance de esta política."] },
+      { title: "Control y derechos", paragraphs: ["Puedes dejar de usar el micrófono en cualquier momento mediante los controles de la app o los permisos de Android, y eliminar los datos locales desinstalando la aplicación. Para ejercer derechos de protección de datos o plantear una consulta al responsable, contacta a través del repositorio GitHub indicado arriba. Evita incluir información personal o confidencial en comentarios públicos. No se publica una dirección de correo electrónico de contacto."] },
+      { title: "Licencias", paragraphs: ["La licencia AGPL-3.0-only se aplica al código de la aplicación, no a los modelos de inteligencia artificial. Los modelos pueden estar sujetos a licencias y condiciones distintas; consulta la información correspondiente a cada modelo."] },
+      { title: "Cambios en esta política", paragraphs: ["Esta política puede actualizarse si cambian la app o sus tratamientos. La fecha de última actualización aparece al inicio de esta página."] },
+    ],
+  },
+  ca: {
+    title: "Política de privacitat de Puente per a Android",
+    updated: "Última actualització: 3 d’octubre de 2026",
+    intro: "Aquesta política explica què passa amb la informació quan fas servir Puente, l’aplicació per a Android. Només es refereix a l’app; no cobreix aquest lloc web ni els serveis externs, que es regeixen per les seves pròpies polítiques.",
+    sections: [
+      { title: "Responsable", paragraphs: ["El responsable de l’aplicació és Pablo Vallejo. Per a consultes relacionades amb la privacitat, pots contactar-hi a través del repositori del projecte a GitHub: ", "https://github.com/pablovallejodev/puente"] },
+      { title: "Ús del micròfon, veu i traduccions", paragraphs: ["Quan actives el micròfon, Puente processa l’àudio al mateix dispositiu per inferir (reconèixer) la veu i traduir-la. L’àudio es processa mentre s’utilitza el micròfon i Puente no el desa. L’app no envia al responsable la veu ni les transcripcions, i el responsable no recopila aquestes dades mitjançant l’app. No es desa cap historial de converses als servidors del responsable.", "El processament de veu i la traducció es fan localment amb els models disponibles al dispositiu. Un cop descarregats els models corresponents, no cal connexió a internet per a aquest processament."] },
+      { title: "Dades i ajustos desats al dispositiu", paragraphs: ["Els ajustos de l’app i els fitxers dels models descarregats romanen al dispositiu; el responsable no en rep còpies. Pots gestionar els permisos des d’Android i eliminar les dades locals desinstal·lant l’app, d’acord amb el comportament d’Android i els ajustos del dispositiu."] },
+      { title: "Descàrrega de models i serveis externs", paragraphs: ["La descàrrega de models, que requereix connexió a internet, se serveix des de Hugging Face i pot utilitzar la infraestructura de distribució de fitxers d’aquest proveïdor. En fer aquestes sol·licituds, el proveïdor i la infraestructura de xarxa poden tractar la teva adreça IP i dades tècniques de connexió (per exemple, les capçaleres de la sol·licitud) per lliurar els fitxers, d’acord amb les seves polítiques: ", "https://huggingface.co/privacy", "Aquesta comunicació es produeix per descarregar models; Puente no envia l’àudio ni les transcripcions com a part d’aquesta descàrrega. Un cop descarregats els models necessaris, el processament de veu i la traducció es fan localment."] },
+      { title: "Analítica, pagaments i publicitat", paragraphs: ["L’app no incorpora analítica ni pagaments. El responsable no utilitza l’app per recopilar dades personals d’ús. Això no descriu el lloc web de Puente, que queda fora de l’abast d’aquesta política."] },
+      { title: "Control i drets", paragraphs: ["Pots deixar de fer servir el micròfon en qualsevol moment mitjançant els controls de l’app o els permisos d’Android, i eliminar les dades locals desinstal·lant l’aplicació. Per exercir drets de protecció de dades o fer una consulta al responsable, contacta-hi a través del repositori GitHub indicat més amunt. Evita incloure informació personal o confidencial en comentaris públics. No es publica cap adreça electrònica de contacte."] },
+      { title: "Llicències", paragraphs: ["La llicència AGPL-3.0-only s’aplica al codi de l’aplicació, no als models d’intel·ligència artificial. Els models poden estar subjectes a llicències i condicions diferents; consulta la informació corresponent a cada model."] },
+      { title: "Canvis en aquesta política", paragraphs: ["Aquesta política es pot actualitzar si canvien l’app o els seus tractaments. La data de l’última actualització apareix al començament d’aquesta pàgina."] },
+    ],
+  },
+  en: {
+    title: "Puente for Android privacy policy",
+    updated: "Last updated: 3 October 2026",
+    intro: "This policy explains what happens to information when you use Puente, the Android app. It applies only to the app; it does not cover this website or external services, which are governed by their own policies.",
+    sections: [
+      { title: "Data controller", paragraphs: ["The person responsible for the app is Pablo Vallejo. For privacy-related enquiries, contact him through the project’s GitHub repository: ", "https://github.com/pablovallejodev/puente"] },
+      { title: "Microphone use, voice and translations", paragraphs: ["When you activate the microphone, Puente processes audio on the device itself to infer (recognise) speech and translate it. Audio is processed while the microphone is in use and is not stored by Puente. The app does not send voice or transcripts to the controller, and the controller does not collect this data through the app. No conversation history is stored on the controller’s servers.", "Voice inference and translation are processed locally using models available on the device. Once the relevant models have been downloaded, an internet connection is not required for this processing."] },
+      { title: "Data and settings stored on your device", paragraphs: ["App settings and downloaded model files remain on your device; the controller does not receive copies. You can manage permissions through Android and remove local data by uninstalling the app, subject to Android’s behaviour and your device settings."] },
+      { title: "Model downloads and external services", paragraphs: ["Downloading models requires an internet connection. Downloads are served from Hugging Face and may use that provider’s file-delivery infrastructure. When these requests are made, the provider and network infrastructure may process your IP address and technical connection data (such as request headers) to deliver the files, under their own policies: ", "https://huggingface.co/privacy", "This communication is for downloading models; Puente does not send your audio or transcripts as part of that download. Once the required models are downloaded, voice processing and translation take place locally."] },
+      { title: "Analytics, payments and advertising", paragraphs: ["The app does not include analytics or payments. The controller does not use the app to collect personal usage data. This does not describe the Puente website, which is outside the scope of this policy."] },
+      { title: "Your control and rights", paragraphs: ["You can stop using the microphone at any time through the app controls or Android permissions, and remove local data by uninstalling the app. To exercise data-protection rights or contact the controller, use the GitHub repository linked above. Avoid including personal or confidential information in public comments. No email contact address is published."] },
+      { title: "Licences", paragraphs: ["The AGPL-3.0-only licence applies to the application code, not to AI models. Models may be subject to different licences and terms; consult the information provided for each model."] },
+      { title: "Changes to this policy", paragraphs: ["This policy may be updated if the app or its processing changes. The last-updated date is shown at the top of this page."] },
+    ],
+  },
+}[locale];
+---
+
+<article class="privacy-policy wrap">
+  <header class="privacy-policy__header">
+    <p class="privacy-policy__eyebrow">{copy.updated}</p>
+    <h1>{copy.title}</h1>
+    <p class="privacy-policy__intro">{copy.intro}</p>
+  </header>
+  {copy.sections.map((section) => (
+    <section class="privacy-policy__section">
+      <h2>{section.title}</h2>
+      {section.paragraphs.map((paragraph) => (
+        paragraph.startsWith("https://")
+          ? <p><a href={paragraph} rel="noopener noreferrer" target="_blank">{paragraph}</a></p>
+          : <p>{paragraph}</p>
+      ))}
+    </section>
+  ))}
+</article>
+
+<style>
+  .privacy-policy { max-width: 56rem; padding-block: 4rem 6rem; }
+  .privacy-policy__header { margin-bottom: 3rem; }
+  .privacy-policy__eyebrow { margin: 0 0 1rem; color: var(--muted); font-size: .875rem; }
+  .privacy-policy h1 { max-width: 48rem; margin: 0; font-size: clamp(2.25rem, 6vw, 4rem); line-height: 1.08; letter-spacing: -.045em; }
+  .privacy-policy__intro { max-width: 48rem; margin: 1.5rem 0 0; font-size: 1.125rem; line-height: 1.7; }
+  .privacy-policy__section { max-width: 48rem; margin-top: 2.5rem; }
+  .privacy-policy h2 { margin: 0 0 .75rem; font-size: 1.375rem; line-height: 1.3; }
+  .privacy-policy__section p { margin: .75rem 0 0; line-height: 1.75; color: var(--muted); }
+  .privacy-policy a { text-underline-offset: .2em; overflow-wrap: anywhere; }
+  @media (max-width: 600px) { .privacy-policy { padding-block: 3rem 4rem; } }
+</style>
