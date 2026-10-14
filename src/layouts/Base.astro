@@ -17,10 +17,9 @@ interface Props {
   title?: string;
   description?: string;
   alternatePaths?: Partial<Record<Locale, string>>;
-  internalPage?: boolean;
 }
 
-const { locale, title, description, alternatePaths, internalPage = false } = Astro.props;
+const { locale, title, description, alternatePaths } = Astro.props;
 const copy = t(locale);
 const localizedPath = (targetLocale: Locale) => alternatePaths?.[targetLocale] ?? localePath(targetLocale);
 const appPrivacyPaths: Record<Locale, string> = {
@@ -30,7 +29,6 @@ const appPrivacyPaths: Record<Locale, string> = {
 };
 const pageTitle = title ?? copy.meta.title;
 const pageDescription = description ?? copy.meta.description;
-const homePath = internalPage ? localePath(locale) : "";
 const canonical = new URL(localizedPath(locale), Astro.site).href;
 // Static share image in public/ — no runtime OG generation (Satori, etc.).
 const ogImagePath = "/og.png";
@@ -150,32 +148,6 @@ const structuredData = {
           <img src="/favicon.svg" alt="" width="34" height="34" />
           <span>Puente</span>
         </a>
-        <nav class="section-nav" aria-label={copy.nav.label}>
-          <a href={`${homePath}#como-funciona`}>{copy.nav.how}</a>
-          <a href={`${homePath}#privacidad`}>{copy.nav.privacy}</a>
-          <a href={`${homePath}#proyecto`}>{copy.nav.project}</a>
-        </nav>
-        <nav class="site-nav" aria-label={copy.nav.langLabel}>
-          <ul class="lang-switch" role="list">
-            {
-              locales.map((l) => (
-                <li>
-                  <a
-                    href={localizedPath(l)}
-                    hreflang={l}
-                    aria-current={l === locale ? "page" : undefined}
-                  >
-                    {localeNames[l]}
-                  </a>
-                </li>
-              ))
-            }
-          </ul>
-          <a class="nav-code" href={githubUrl} rel="noopener noreferrer" target="_blank">
-            <span>{copy.nav.code}</span>
-            <span aria-hidden="true">↗</span>
-          </a>
-        </nav>
       </div>
     </header>
 
@@ -224,20 +196,14 @@ const structuredData = {
 </html>
 
 <style>
-  .site-header { position: sticky; top: 0; z-index: 20; background: rgb(255 255 255 / 96%); border-bottom: 1px solid var(--line); }
-  .site-header__inner { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; min-height: 5.5rem; }
+  .site-header { position: sticky; top: 0; z-index: 20; background: rgb(255 255 255 / 84%); border-bottom: 1px solid color-mix(in srgb, var(--line) 70%, transparent); backdrop-filter: blur(8px); }
+  .site-header__inner { display: flex; align-items: center; justify-content: center; min-height: 5.5rem; }
   .site-logo { display: inline-flex; align-items: center; gap: .6rem; font-weight: 800; font-size: 1.55rem; letter-spacing: -.06em; text-decoration: none; }
   .site-logo img { width: 2.4rem; height: 2.4rem; }
-  .section-nav { display: flex; align-items: center; gap: 2.25rem; }
-  .section-nav a { padding-block: .65rem; font-size: .8rem; font-weight: 600; text-decoration: none; color: var(--muted); }
-  .section-nav a:hover { color: var(--brown); }
-  .site-nav { display: flex; align-items: center; gap: 1.4rem; }
   .lang-switch { display: flex; gap: .1rem; margin: 0; padding: 0; list-style: none; }
   .lang-switch a { display: grid; min-width: 2rem; min-height: 2.75rem; place-items: center; text-decoration: none; font-size: .67rem; font-weight: 600; color: var(--muted); }
   .lang-switch a[aria-current="page"] { color: var(--brown); font-weight: 800; text-decoration: underline; text-underline-offset: .4em; }
   .lang-switch a:hover { color: var(--brown); background: var(--tint); }
-  .nav-code { display: inline-flex; align-items: center; gap: .85rem; min-height: 2.6rem; padding-inline: 1rem; border: 1px solid var(--line); border-radius: 4px; font-size: .75rem; font-weight: 700; text-decoration: none; }
-  .nav-code:hover { background: var(--tint); border-color: var(--brown); }
   .site-footer { padding-block: 2.5rem; border-top: 1px solid var(--line); }
   .site-footer__inner { display: flex; justify-content: space-between; align-items: center; gap: 2rem; }
   .site-footer p { margin: .5rem 0 0; font-size: .75rem; color: var(--muted); }
@@ -245,8 +211,7 @@ const structuredData = {
   .site-footer__meta { text-align: right; }
   .site-footer__meta a { text-underline-offset: .25em; }
   .lang-switch--footer { justify-content: flex-end; margin-top: .6rem; }
-  @media (max-width: 900px) { .section-nav { gap: 1.25rem; } .site-nav { gap: .65rem; } }
-  @media (max-width: 760px) { .section-nav { display: none; } .site-header__inner { min-height: 4.5rem; } }
-  @media (max-width: 400px) { .site-header__inner { gap: .5rem; } .site-logo { font-size: 1.3rem; gap: .3rem; } .site-logo img { width: 2rem; height: 2rem; } .nav-code { padding-inline: .6rem; gap: .4rem; } .site-nav { gap: .4rem; } .lang-switch a { min-width: 1.65rem; } }
+  @media (max-width: 760px) { .site-header__inner { min-height: 4.5rem; } }
+  @media (max-width: 400px) { .site-logo { font-size: 1.3rem; gap: .3rem; } .site-logo img { width: 2rem; height: 2rem; } }
   @media (max-width: 520px) { .site-footer__inner { align-items: start; flex-direction: column; } .site-footer__meta { text-align: left; } .lang-switch--footer { justify-content: flex-start; } }
 </style>
