@@ -19,7 +19,7 @@ Puente is a mobile app for live voice translation that runs entirely on-device a
 - Privacy: audio is processed on the device; not sent to servers; not stored
 - Speech recognition: Whisper and other downloadable models, selected according to language and device
 - Translation: NLLB, SalamandraTA or MADLAD-400, depending on the selected model
-- Status: source code available on GitHub; Google Play release coming soon
+- Status: available on Google Play in early access; source code available on GitHub
 - Author: Pablo Vallejo
 
 ## Source code

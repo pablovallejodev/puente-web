@@ -2,6 +2,7 @@ export const locales = ["es", "ca", "en"] as const;
 export type Locale = (typeof locales)[number];
 export const defaultLocale: Locale = "es";
 export const githubUrl = "https://github.com/pablovallejodev/puente";
+export const googlePlayUrl = "https://play.google.com/store/apps/details?id=dev.pablovallejo.puente";
 export const siteName = "Puente";
 export const ogLocale: Record<Locale, string> = {
   es: "es_ES",
@@ -92,7 +93,7 @@ export const ui = {
           body: "Habla y lee la traducción en la pantalla. A partir de aquí, no necesitas conexión.",
         },
       ],
-      note: "La app está en desarrollo. Su código ya está disponible; la publicación en Google Play está pendiente.",
+      note: "Disponible en Google Play en acceso anticipado.",
     },
     privacy: {
       eyebrow: "PRIVADA POR DISEÑO",
@@ -136,9 +137,9 @@ export const ui = {
             "Puente permite traducir entre muchos idiomas, incluidos español, catalán, inglés, francés, alemán, árabe, chino y japonés. La disponibilidad y la precisión dependen del idioma y de los modelos que utilices.",
         },
         {
-          question: "¿Cuándo podré descargar la app?",
+          question: "¿Está disponible la app?",
           answer:
-            "Estamos preparando Puente para Android. La publicación en Google Play está pendiente, sin una fecha anunciada. Mientras tanto, puedes seguir el desarrollo y consultar el código en GitHub.",
+            "Sí. Puente ya está disponible en Google Play en acceso anticipado.",
         },
         {
           question: "¿Funcionará en mi teléfono?",
@@ -151,7 +152,7 @@ export const ui = {
       title: "La próxima conversación,\nun poco más cerca.",
       body: "Sin conexión. Con privacidad. Para todos.",
       cta: "Conoce Puente en GitHub",
-      note: "Próximamente en Google Play",
+      note: "Disponible en Google Play en acceso anticipado",
     },
     footer: {
       tagline: "Un puente entre idiomas.",
@@ -244,7 +245,7 @@ export const ui = {
           body: "Parla i llegeix la traducció a la pantalla. A partir d’aquí, no necessites connexió.",
         },
       ],
-      note: "L’app està en desenvolupament. El codi ja està disponible; la publicació a Google Play està pendent.",
+      note: "Disponible a Google Play en accés anticipat.",
     },
     privacy: {
       eyebrow: "PRIVADA PER DISSENY",
@@ -288,9 +289,9 @@ export const ui = {
             "Puente permet traduir entre molts idiomes, com ara català, castellà, anglès, francès, alemany, àrab, xinès i japonès. La disponibilitat i la precisió depenen de l’idioma i dels models que utilitzis.",
         },
         {
-          question: "Quan podré descarregar l’app?",
+          question: "L’app està disponible?",
           answer:
-            "Estem preparant Puente per a Android. La publicació a Google Play està pendent, sense una data anunciada. Mentrestant, pots seguir el desenvolupament i consultar el codi a GitHub.",
+            "Sí. Puente ja està disponible a Google Play en accés anticipat.",
         },
         {
           question: "Funcionarà al meu telèfon?",
@@ -303,7 +304,7 @@ export const ui = {
       title: "La propera conversa,\nuna mica més a prop.",
       body: "Sense connexió. Amb privacitat. Per a tothom.",
       cta: "Coneix Puente a GitHub",
-      note: "Aviat a Google Play",
+      note: "Disponible a Google Play en accés anticipat",
     },
     footer: {
       tagline: "Un pont entre idiomes.",
@@ -396,7 +397,7 @@ export const ui = {
           body: "Speak and read the translation on screen. From here on, you don’t need a connection.",
         },
       ],
-      note: "The app is in development. The source code is already available; the Google Play release is still to come.",
+      note: "Available on Google Play in early access.",
     },
     privacy: {
       eyebrow: "PRIVATE BY DESIGN",
@@ -440,9 +441,9 @@ export const ui = {
             "Puente supports translation between many languages, including English, Spanish, Catalan, French, German, Arabic, Chinese and Japanese. Availability and accuracy depend on the language and the models you use.",
         },
         {
-          question: "When can I download the app?",
+          question: "Is the app available?",
           answer:
-            "We’re preparing Puente for Android. The Google Play release is still to come, with no announced date. In the meantime, you can follow development and explore the code on GitHub.",
+            "Yes. Puente is available on Google Play in early access.",
         },
         {
           question: "Will it work on my phone?",
@@ -455,7 +456,7 @@ export const ui = {
       title: "Your next conversation,\na little closer.",
       body: "Offline. Private. For everyone.",
       cta: "Meet Puente on GitHub",
-      note: "Coming to Google Play",
+      note: "Available on Google Play in early access",
     },
     footer: {
       tagline: "A bridge between languages.",
